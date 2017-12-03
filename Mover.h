@@ -8,6 +8,7 @@
 class cMover {
 public:
 	cMover();
+	cMover(const cMover& mover);
 	cMover(float x, float y, float z, float r, float angle, float speed);
 	~cMover();
 
