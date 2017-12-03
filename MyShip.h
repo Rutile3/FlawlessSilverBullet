@@ -41,8 +41,11 @@ public:
 class myBullet :public cMover {
 public:
 	myBullet();
+	myBullet(const cMover& mover);
 	myBullet(float x, float y, float z, float r, float angle, float speed);
 	~myBullet();
+
+	void Draw();
 };
 
 extern cKey* key;

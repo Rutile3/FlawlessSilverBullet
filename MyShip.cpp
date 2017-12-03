@@ -2,7 +2,7 @@
 
 //Œp³‚Å‚Ç‚¤‚É‚©‚È‚è‚»‚¤
 int energy;
-const int energy_max = 1200;
+const int energy_max = 120000;//1200‚ª‘z’è’l
 
 myShip::myShip() {}
 myShip::myShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
@@ -69,7 +69,6 @@ void myShip::Shot() {
 		shot_count = 0;
 }
 
-
 myShield::myShield() {}
 myShield::myShield(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {}
 myShield::~myShield() {}
@@ -92,8 +91,14 @@ void myShield::Draw() {
 	DrawCircle(my_ship->x, my_ship->y, r,	GetColor(100, 200, 200), FALSE);//‰æ‘œ‚ð’£‚é
 }
 
-
 myBullet::myBullet() {}
+myBullet::myBullet(const cMover& mover) :cMover(mover) {
+	float x = my_ship->x - mover.x;
+	float y = my_ship->y - mover.y;
+	angle = atan2(y,x)+3.141592;
+	add_x = speed*cos(angle);
+	add_y = speed*sin(angle);
+}
 myBullet::myBullet(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	if		(energy >= energy_max / 3)	this->r = 16;//Žb’è“I‚È‘å‚«‚³
 	else if (energy >= energy_max / 4)	this->r = 12;
@@ -101,3 +106,7 @@ myBullet::myBullet(float x, float y, float z, float r, float angle, float speed)
 	else								this->r = 4;
 }
 myBullet::~myBullet(){}
+void myBullet::Draw() {
+	DrawPixel(x, y, GetColor(z, z, z));
+	DrawCircle(x, y, r, GetColor(z, z-100, z-100), FALSE);
+}

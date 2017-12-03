@@ -89,12 +89,13 @@ void CollisionEnemyBullet() {
 	while (eb_i < enemy_bullet.size()) {
 		if (enemy_bullet[eb_i]->Hit(my_shield)) {
 			//‘z’è‚µ‚Ä‚µ‚éˆ—
-			//“G’e‚ª‹É‘¾ƒŒ[ƒU[‚©
-			//->“G’e‚Æ“¯‚¶ƒGƒtƒFƒNƒg‚ð¶¬
-			//‚»‚Ì‘¼
-			//->“G’e‚Æ“¯‚¶Ž©’e‚ð¶¬
-			//“G’e‚ðíœ
-			enemy_bullet.erase(enemy_bullet.begin() + eb_i);//ã‚Ìˆ—‚ðŠÈ—ª‰»
+			if (false) {//“G’e‚ª‹É‘¾ƒŒ[ƒU[‚©
+				//->“G’e‚Æ“¯‚¶ƒGƒtƒFƒNƒg‚ð¶¬
+			}
+			else{//‚»‚Ì‘¼
+				my_bullet.push_back(new myBullet(*enemy_bullet[eb_i]));
+			}
+			enemy_bullet.erase(enemy_bullet.begin() + eb_i);
 			continue;
 		}
 		else if (enemy_bullet[eb_i]->Hit(my_ship)) {
