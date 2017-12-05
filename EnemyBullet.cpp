@@ -19,6 +19,10 @@ void NWay(float x, float y, float z, float r, float angle, float angle_renge, fl
 	}
 }
 
+void NCircle(float x, float y, float z, float r, float angle, float speed, float shots) {
+	NWay(x, y, z, r, angle, 2 * 3.141592f, speed, shots - 1);
+}
+
 //’e–‹(ƒNƒ‰ƒX)
 spiralShotPattern::spiralShotPattern() {}
 spiralShotPattern::spiralShotPattern(float* x, float* y,float* z, float r, float angle, float angle_rate, float speed, float interval) {

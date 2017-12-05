@@ -3,7 +3,7 @@
 enemyShip::enemyShip() {}
 enemyShip::enemyShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	count = 0;
-	spiralshot = new spiralShotPattern(&this->x, &this->y, &this->z, 8, 0, 0.2, 4, 1);
+	spiralshot = new spiralShotPattern(&this->x, &this->y, &this->z, 8, 0, 0.2f, 4, 1);
 }
 enemyShip::~enemyShip() {}
 void enemyShip::Calc() {
@@ -30,9 +30,9 @@ void xLV::Move() {
 	y += add_y;
 }
 void xLV::Shot() {
-	int tmp_x = abs(my_ship->x - x);
-	int tmp_y = abs(my_ship->y - y);
-	int tmp   = abs(tmp_x - tmp_y);//à–¾•Ï”
+	float tmp_x = abs(my_ship->x - x);
+	float tmp_y = abs(my_ship->y - y);
+	float tmp = abs(tmp_x - tmp_y);//à–¾•Ï”
 
 	if (count == 0 && (tmp < 5)) {//‘å‘Ì45‹‚Å1‰ñŒ‚‚Â
 		enemy_bullet.push_back(new directionalBullet(x, y, 200, 8, atan2(my_ship->y - y, my_ship->x - x), 5));
@@ -57,7 +57,7 @@ void inFront::Move() {
 void inFront::Shot() {
 	if (count == 60) {
 		for (int i = 1; i <= 4; i++) {
-			float tmp_speed = 3 + i * 0.5;
+			float tmp_speed = 3 + i * 0.5f;
 			enemy_bullet.push_back(new directionalBullet(x, y, 200, 12, angle, tmp_speed));
 		}
 	}
@@ -80,7 +80,7 @@ void slalomFront::Move() {
 void slalomFront::Shot() {
 	if (count == 60) {
 		for (int i = 1; i <= 4; i++) {
-			float tmp_speed = 3 + i * 0.5;
+			float tmp_speed = 3 + i * 0.5f;
 			enemy_bullet.push_back(new directionalBullet(x, y, 200, 12, angle, tmp_speed));
 		}
 	}
@@ -98,7 +98,7 @@ void cutInLeft::Calc() {
 void cutInLeft::Move() {
 	if (fit_x) {
 		if (count < 4) {
-			angle += 3.141592 / 16;
+			angle += 3.141592f / 16;
 			count++;
 		}
 	}
@@ -121,7 +121,7 @@ void cutInRight::Calc() {
 void cutInRight::Move() {
 	if (fit_x) {
 		if (count < 4) {
-			angle -= 3.141592 / 16;
+			angle -= 3.141592f / 16;
 			count++;
 		}
 	}
@@ -139,7 +139,7 @@ void cutInRight::Move() {
 testSpiralShotPattern::testSpiralShotPattern() {}
 testSpiralShotPattern::testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	count = 0;
-	spiralshot = new spiralShotPattern(&this->x, &this->y, &this->z, 8, angle, -0.2, 4, 1);
+	spiralshot = new spiralShotPattern(&this->x, &this->y, &this->z, 8, angle, -0.2f, 4, 1);
 }
 testSpiralShotPattern::~testSpiralShotPattern() {
 	delete spiralshot;
@@ -160,7 +160,7 @@ void testSpiralShotPattern::Shot() {
 testMultiSpiralShotPatten::testMultiSpiralShotPatten() {}
 testMultiSpiralShotPatten::testMultiSpiralShotPatten(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	count = 0;
-	multiple_spiral_shot_patten = new multiSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3, 6, 6, -3);
+	multiple_spiral_shot_patten = new multiSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3f, 6, 6, -3);
 }
 testMultiSpiralShotPatten::~testMultiSpiralShotPatten() {
 	delete multiple_spiral_shot_patten;
@@ -181,7 +181,7 @@ void testMultiSpiralShotPatten::Shot() {
 testBothSpiralShotPatten::testBothSpiralShotPatten() {}
 testBothSpiralShotPatten::testBothSpiralShotPatten(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	count = 0;
-	both_spiral_shot_patten = new bothSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3, 6, 6, 5, angle, -0.1, 6, 3, -3);
+	both_spiral_shot_patten = new bothSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3f, 6, 6, 5, angle, -0.1, 6, 3, -3);
 }
 testBothSpiralShotPatten::~testBothSpiralShotPatten() {
 	delete both_spiral_shot_patten;
@@ -220,6 +220,23 @@ void testNWay::Shot() {
 	//	NWay(x, y, z, 6, angle + count*0.1f, 1, 6, 3);//‰ñ“]
 	//if (count % 5 == 0)
 	//	NWay(x, y, z, 6, angle, 1.5, 8, 4);//ˆÀ’n
-	//if (count >= 50 && count <= 100 && count % 10 == 0) 
-	//	NWay(x, y, z, 6, angle, 0.5f, 4, 2);
+}
+
+testNCircle::testNCircle() {}
+testNCircle::testNCircle(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+	count = 0;
+}
+testNCircle::~testNCircle() {}
+void testNCircle::Calc() {
+	Move();
+	Shot();
+	count++;
+}
+void testNCircle::Move() {
+	x += add_x;
+	y += add_y;
+}
+void testNCircle::Shot() {
+	if (count == 80)
+		NCircle(x, y, z, 6, angle + sin(count*0.01f), 8, 32);
 }

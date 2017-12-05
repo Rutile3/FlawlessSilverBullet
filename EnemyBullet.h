@@ -68,6 +68,8 @@ private:
 //NWay’e
 void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots);
 
+//N‰~Œ`’e
+void NCircle(float x, float y, float z, float r, float angle, float speed, float shots);
 
 extern vector<cMover*> enemy_bullet;
 

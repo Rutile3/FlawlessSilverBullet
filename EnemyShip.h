@@ -170,6 +170,20 @@ private:
 	void Move();
 	void Shot();
 };
+class testNCircle :public cMover {
+public:
+	testNCircle();
+	testNCircle(float x, float y, float z, float r, float angle, float speed);
+	~testNCircle();
+
+	void Calc();
+
+private:
+	int count;
+
+	void Move();
+	void Shot();
+};
 
 extern vector<cMover*> enemy_bullet;
 extern vector<cMover*> enemy_ship;
