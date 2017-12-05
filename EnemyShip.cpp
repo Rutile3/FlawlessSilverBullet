@@ -74,7 +74,7 @@ void slalomFront::Calc() {
 	count++;
 }
 void slalomFront::Move() {
-	x += speed*cos(count*0.1);
+	x += speed*cos(count*0.1f);
 	y += add_y;
 }
 void slalomFront::Shot() {
@@ -181,7 +181,7 @@ void testMultiSpiralShotPatten::Shot() {
 testBothSpiralShotPatten::testBothSpiralShotPatten() {}
 testBothSpiralShotPatten::testBothSpiralShotPatten(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	count = 0;
-	both_spiral_shot_patten = new bothSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3f, 6, 6, 5, angle, -0.1, 6, 3, -3);
+	both_spiral_shot_patten = new bothSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3f, 6, 6, 5, angle, -0.1f, 6, 3, -3);
 }
 testBothSpiralShotPatten::~testBothSpiralShotPatten() {
 	delete both_spiral_shot_patten;

@@ -25,7 +25,7 @@ void NCircle(float x, float y, float z, float r, float angle, float speed, float
 
 //’e–‹(ƒNƒ‰ƒX)
 spiralShotPattern::spiralShotPattern() {}
-spiralShotPattern::spiralShotPattern(float* x, float* y,float* z, float r, float angle, float angle_rate, float speed, float interval) {
+spiralShotPattern::spiralShotPattern(float* x, float* y,float* z, float r, float angle, float angle_rate, float speed, int interval) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -46,13 +46,13 @@ void spiralShotPattern::Calc() {
 }
 
 multiSpiralShotPatten::multiSpiralShotPatten() {}
-multiSpiralShotPatten::multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, float interval, int  way) {
+multiSpiralShotPatten::multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int  way) {
 	if (way < 0) {
 		way *= -1;
-		angle += 3.141592;
+		angle += 3.141592f;
 	}
 	for (int i = 0; i < way; i++) {
-		float tmp_angle = angle + 2 * 3.141592 / way * i;
+		float tmp_angle = angle + 2 * 3.141592f / way * i;
 		spiral_shot_pattern.push_back(new spiralShotPattern(x, y, z, r, tmp_angle, angle_rate, speed, interval));
 	}
 }
@@ -65,7 +65,7 @@ void multiSpiralShotPatten::Calc() {
 }
 
 bothSpiralShotPatten::bothSpiralShotPatten() {}
-bothSpiralShotPatten::bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, float interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, float interval_2, int way_2) {
+bothSpiralShotPatten::bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, int interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, int interval_2, int way_2) {
 	multi_spiral_shot_patten[0] = new multiSpiralShotPatten(x, y, z, r, angle_1, angle_rate_1, speed_1, interval_1, way_1);
 	multi_spiral_shot_patten[1] = new multiSpiralShotPatten(x, y, z, r, angle_2, angle_rate_2, speed_2, interval_2, way_2);
 }
