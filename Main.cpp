@@ -72,7 +72,7 @@ void Calc() {
 void CreateEnemy() {
 	//デバッグ用に敵を量産
 	if (main_count % 30 == 0)
-		enemy_ship.push_back(new testBothSpiralShotPatten(main_count % 640, -10, 200, 16, 3.141592 / 2, 3));
+		enemy_ship.push_back(new inFront(main_count % 640, -10, 200, 16, 3.141592 / 2, 3));
 	//デバッグ用 個体テスト
 	//if (main_count % 2000 == 0)
 	//	enemy_ship.push_back(new testBothSpiralShotPatten(320, 200, 200, 16, 3.141592 / 2, 0));

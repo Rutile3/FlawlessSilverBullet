@@ -2,7 +2,7 @@
 
 //継承でどうにかなりそう
 int energy;
-const int energy_max = 120000;//1200が想定値
+const int energy_max = 800;//1200が想定値
 
 myShip::myShip() {}
 myShip::myShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
@@ -14,11 +14,10 @@ void myShip::Calc(){
 	Move();
 	Shot();
 	//エネルギー増加量は現在のエネルギー量に依存
-	if (key->z->State() == false && key->x->State() == false) {
-		if		(energy >= energy_max / 3)	energy += 4;
-		else if (energy >= energy_max / 4)	energy += 3;
-		else if (energy >= energy_max / 5)	energy += 2;
-		else								energy += 1;
+	if (key->x->State() == false) {
+		if		(energy >= energy_max / 3)	energy += 6;
+		else if (energy >= energy_max / 9)	energy += 5;
+		else 								energy += 3;
 	}
 	//最大最小値の補正
 	if (energy > energy_max)			energy = energy_max;
@@ -62,7 +61,7 @@ void myShip::Shot() {
 		if (shot_count++ % 6 == 0) {
 			my_bullet.push_back(new myBullet(x, y, z, 0, 3.141592 / 2 * 3, 24));
 			//効果音を出す
-			energy -= 2;//射出時にエネルギーを減らす
+			energy -= 4;//射出時にエネルギーを減らす
 		}
 	}
 	else
@@ -70,18 +69,26 @@ void myShip::Shot() {
 }
 
 myShield::myShield() {}
-myShield::myShield(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {}
+myShield::myShield(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+	free_count = 0;
+}
 myShield::~myShield() {}
 void myShield::Calc() {
 	//押してる間は効果音を流して放した瞬間に効果音を切る処理
 	//シールドの展開と縮小
 	if (key->x->State() && key->z->State() == false && energy > 0) {
-		r >= max_r ? r = max_r : r += 2;
+		r >= max_r ? r = max_r : r += 8;
 		angle += 0.1;//実際は回る
 		energy -= 4;//展開してると常に減る
+		free_count = 0;
 	}
-	else 
-		r <= 0 ? r = 0 : r -= 2;
+	else {
+		r <= 0 ? r = 0 : r -= 4;
+		if (free_count <= 20) {
+			free_count++;
+			energy -= 2;
+		}
+	}
 }
 void myShield::Draw() {
 	//エネルギーが一定以下だとシールドの色が変化

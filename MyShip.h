@@ -19,6 +19,7 @@ public:
 	~myShield();
 
 	const int max_r = 32;
+	int free_count;
 
 	void Calc();
 	void Draw();
