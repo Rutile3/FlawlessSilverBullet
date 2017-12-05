@@ -2,7 +2,7 @@
 
 //継承でどうにかなりそう
 int energy;
-const int energy_max = 800;//1200が想定値
+const int energy_max = 800;//800が想定値
 
 myShip::myShip() {}
 myShip::myShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
