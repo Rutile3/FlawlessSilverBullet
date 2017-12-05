@@ -134,6 +134,8 @@ void cutInRight::Move() {
 
 
 //テスト
+
+
 testSpiralShotPattern::testSpiralShotPattern() {}
 testSpiralShotPattern::testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	count = 0;
@@ -195,4 +197,29 @@ void testBothSpiralShotPatten::Move() {
 }
 void testBothSpiralShotPatten::Shot() {
 	both_spiral_shot_patten->Calc();
+}
+
+testNWay::testNWay() {}
+testNWay::testNWay(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+	count = 0;
+}
+testNWay::~testNWay() {}
+void testNWay::Calc() {
+	Move();
+	Shot();
+	count++;
+}
+void testNWay::Move() {
+	x += add_x;
+	y += add_y;
+}
+void testNWay::Shot() {
+	if (count % 5 == 0)
+		NWay(x, y, z, 6, angle + sin(count*0.01f), 2, 4, 5);//ワインダー
+	//if (count % 5 == 0)
+	//	NWay(x, y, z, 6, angle + count*0.1f, 1, 6, 3);//回転
+	//if (count % 5 == 0)
+	//	NWay(x, y, z, 6, angle, 1.5, 8, 4);//安地
+	//if (count >= 50 && count <= 100 && count % 10 == 0) 
+	//	NWay(x, y, z, 6, angle, 0.5f, 4, 2);
 }

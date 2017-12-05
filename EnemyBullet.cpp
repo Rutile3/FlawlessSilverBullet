@@ -6,7 +6,20 @@ directionalBullet::directionalBullet(float x, float y, float z, float r, float a
 directionalBullet::~directionalBullet() {}
 
 
-//íeñã
+//íeñã(ä÷êî)
+void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots) {
+	if (shots == 1) {
+		enemy_bullet.push_back(new directionalBullet(x, y, z, r, angle, speed));
+	}
+	else {
+		for (int i = 0; i < shots; i++) {
+			float tmp_angle = angle + angle_renge*(i / (shots - 1) - 0.5f);
+			enemy_bullet.push_back(new directionalBullet(x, y, z, r, tmp_angle, speed));
+		}
+	}
+}
+
+//íeñã(ÉNÉâÉX)
 spiralShotPattern::spiralShotPattern() {}
 spiralShotPattern::spiralShotPattern(float* x, float* y,float* z, float r, float angle, float angle_rate, float speed, float interval) {
 	this->x = x;
