@@ -24,7 +24,7 @@ public:
 class spiralShotPattern {
 public:
 	spiralShotPattern();
-	spiralShotPattern(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, float interval);
+	spiralShotPattern(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval);
 	~spiralShotPattern();
 
 	void Calc();
@@ -44,7 +44,7 @@ private:
 class multiSpiralShotPatten {
 public:
 	multiSpiralShotPatten();
-	multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, float interval, int  way);
+	multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int  way);
 	~multiSpiralShotPatten();
 
 	void Calc();
@@ -56,7 +56,7 @@ private:
 class bothSpiralShotPatten {
 public:
 	bothSpiralShotPatten();
-	bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, float interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, float interval_2, int way_2);
+	bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, int interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, int interval_2, int way_2);
 	~bothSpiralShotPatten();
 
 	void Calc();
