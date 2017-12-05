@@ -36,7 +36,7 @@ void myShip::Move() {
 		key->up->State()	&& key->left->State() ||
 		key->down->State()	&& key->right->State()||
 		key->down->State()	&& key->left->State() )
-		naname = 1.41;
+		naname = 1.41f;//√2
 	else
 		naname = 1;
 	if (key->up->State()) {//この辺関数にまとめれそう
@@ -59,7 +59,7 @@ void myShip::Move() {
 void myShip::Shot() {
 	if (key->z->State() && key->x->State() == false && energy > 0) {
 		if (shot_count++ % 6 == 0) {
-			my_bullet.push_back(new myBullet(x, y, z, 0, 3.141592 / 2 * 3, 24));
+			my_bullet.push_back(new myBullet(x, y, z, 0, 3.141592f / 2 * 3, 24));
 			//効果音を出す
 			energy -= 4;//射出時にエネルギーを減らす
 		}
@@ -78,7 +78,7 @@ void myShield::Calc() {
 	//シールドの展開と縮小
 	if (key->x->State() && key->z->State() == false && energy > 0) {
 		r >= max_r ? r = max_r : r += 8;
-		angle += 0.1;//実際は回る
+		angle += 0.1f;//実際は回る
 		energy -= 4;//展開してると常に減る
 		free_count = 0;
 	}
@@ -92,8 +92,7 @@ void myShield::Calc() {
 }
 void myShield::Draw() {
 	//エネルギーが一定以下だとシールドの色が変化
-	DrawPixel( my_ship->x, my_ship->y,		GetColor(100, 200, 200));
-	int color;
+	DrawPixel(my_ship->x, my_ship->y, GetColor(100, 200, 200));
 	energy >= energy_max / 5 ? GetColor(100, 200, 200) : GetColor(255, 0, 0);//画像の切り替え
 	DrawCircle(my_ship->x, my_ship->y, r,	GetColor(100, 200, 200), FALSE);//画像を張る
 }
@@ -102,7 +101,7 @@ myBullet::myBullet() {}
 myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	float x = my_ship->x - mover.x;
 	float y = my_ship->y - mover.y;
-	angle = atan2(y,x)+3.141592;
+	angle = atan2(y,x)+3.141592f;
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
 }
