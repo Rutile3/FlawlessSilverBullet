@@ -20,13 +20,14 @@ public:
 	enemyShip(float x, float y, float z, float r, float angle, float speed);
 	~enemyShip();
 
+	void Calc();
+
+private:
 	int count;
 	spiralShotPattern* spiralshot;
 
-	void Calc();
 	void Move();
 	void Shot();
-	
 };
 
 //45ÅãÇ≈åÇÇ¡ÇƒÇ≠ÇÈÇ‚Ç¬
@@ -36,9 +37,11 @@ public:
 	xLV(float x, float y, float z, float r, float angle, float speed);
 	~xLV();
 
+	void Calc();
+
+private:
 	int count;
 
-	void Calc();
 	void Move();
 	void Shot();
 };
@@ -50,9 +53,10 @@ public:
 	inFront(float x, float y, float z, float r, float angle, float speed);
 	~inFront();
 
+	void Calc();
+private:
 	int count;
 
-	void Calc();
 	void Move();
 	void Shot();
 };
@@ -64,9 +68,10 @@ public:
 	slalomFront(float x, float y, float z, float r, float angle, float speed);
 	~slalomFront();
 
+	void Calc();
+private:
 	int count;
 
-	void Calc();
 	void Move();
 	void Shot();
 };
@@ -78,10 +83,12 @@ public:
 	cutInLeft(float x, float y, float z, float r, float angle, float speed);
 	~cutInLeft();
 
+	void Calc();
+
+private:
 	int count;
 	bool fit_x;
 
-	void Calc();
 	void Move();
 	void Shot();
 };
@@ -93,13 +100,17 @@ public:
 	cutInRight(float x, float y, float z, float r, float angle, float speed);
 	~cutInRight();
 
+	void Calc();
+
+private:
 	int count;
 	bool fit_x;
 
-	void Calc();
 	void Move();
 	void Shot();
 };
+
+
 
 
 //ÉeÉXÉg
@@ -144,6 +155,20 @@ public:
 	void Move();
 	void Shot();
 
+};
+class testNWay :public cMover {
+public:
+	testNWay();
+	testNWay(float x, float y, float z, float r, float angle, float speed);
+	~testNWay();
+
+	void Calc();
+
+private:
+	int count;
+
+	void Move();
+	void Shot();
 };
 
 extern vector<cMover*> enemy_bullet;

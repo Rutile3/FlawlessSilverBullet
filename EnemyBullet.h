@@ -40,7 +40,6 @@ private:
 	int count;
 	int interval;
 };
-
 //‘½•ûŒü‰QŠª’e
 class multiSpiralShotPatten {
 public:
@@ -53,7 +52,6 @@ public:
 private:
 	vector<spiralShotPattern*> spiral_shot_pattern;
 };
-
 //—¼‰ñ“]‰QŠª’e
 class bothSpiralShotPatten {
 public:
@@ -66,6 +64,10 @@ public:
 private:
 	multiSpiralShotPatten* multi_spiral_shot_patten[2];
 };
+
+//NWay’e
+void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots);
+
 
 extern vector<cMover*> enemy_bullet;
 
