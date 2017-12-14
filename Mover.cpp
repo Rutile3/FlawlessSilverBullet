@@ -6,6 +6,7 @@ cMover::cMover(const cMover& mover) {
 	y = mover.y;
 	z = mover.z;
 	r = mover.r;
+	hp = mover.r;//テスト用
 	angle = mover.angle;
 	speed = mover.speed;
 	add_x = speed*cos(angle);
@@ -16,6 +17,7 @@ cMover::cMover(float x, float y, float z, float r, float angle, float speed) {
 	this->y = y;
 	this->z = z;
 	this->r = r;
+	this->hp = r;//テスト用
 	this->angle = angle;
 	this->speed = speed;
 	this->add_x = speed*cos(angle);

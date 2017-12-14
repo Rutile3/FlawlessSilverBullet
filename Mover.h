@@ -12,7 +12,7 @@ public:
 	cMover(float x, float y, float z, float r, float angle, float speed);
 	~cMover();
 
-	float angle, speed, r, x, y, z;
+	float angle, speed, hp, id, r, x, y, z;
 
 	virtual void Calc();
 	virtual void Draw();
