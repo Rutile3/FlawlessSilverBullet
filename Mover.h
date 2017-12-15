@@ -17,6 +17,7 @@ public:
 	virtual void Calc();
 	virtual void Draw();
 	virtual bool Hit(cMover* mover);
+	virtual bool OutSide();
 
 protected:
 	float add_x, add_y;

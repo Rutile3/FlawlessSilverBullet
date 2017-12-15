@@ -38,3 +38,9 @@ bool cMover::Hit(cMover* mover) {
 	float y = this->y - mover->y;
 	return x*x + y*y < r*r;
 }
+bool cMover::OutSide() {
+	if (x > 640 + 50 || x < -50 ||
+		y > 480 + 50 || y < -50)
+		return true;
+	return false;
+}

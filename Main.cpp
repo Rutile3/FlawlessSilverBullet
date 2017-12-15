@@ -11,7 +11,6 @@ void Draw();
 void EndGame();
 void GameMain();
 void OutSide();
-void OutSideJudge(vector<cMover*> &ve);
 bool InitDxLibrary();
 
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
@@ -153,23 +152,16 @@ EnemyShip_Collision_MyBullet:
 }
 
 void OutSide() {
-	OutSideJudge(my_bullet);
-	OutSideJudge(enemy_bullet);
-	OutSideJudge(enemy_ship);
-}
-
-void OutSideJudge(vector<cMover*> &ve) {//ポインタにしたほうがいい
-	unsigned int i = 0;
-	while (i < ve.size()) {
-		if (ve[i]->x > 640 + 50 ||
-			ve[i]->y > 480 + 50 || 
-			ve[i]->x < -50 ||
-			ve[i]->y < -50) {
-			ve.erase(ve.begin() + i);
-			continue;
-		}
-		i++;
-	}
+	//関数やマクロでまとめれそう
+	for (int i = 0; i < enemy_ship.size(); i++)
+		if( enemy_ship[i]->OutSide())
+			enemy_ship.erase(enemy_ship.begin() + i);
+	for (int i = 0; i < my_bullet.size(); i++)
+		if (my_bullet[i]->OutSide())
+			my_bullet.erase(my_bullet.begin() + i);
+	for (int i = 0; i < enemy_bullet.size(); i++)
+		if (enemy_bullet[i]->OutSide())
+			enemy_bullet.erase(enemy_bullet.begin() + i);
 }
 
 void Draw() {
