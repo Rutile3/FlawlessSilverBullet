@@ -134,8 +134,6 @@ void cutInRight::Move() {
 
 
 //ƒeƒXƒg
-
-
 testSpiralShotPattern::testSpiralShotPattern() {}
 testSpiralShotPattern::testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	count = 0;
