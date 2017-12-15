@@ -184,9 +184,9 @@ void Draw() {
 bool InitDxLibrary() {
 	SetAlwaysRunFlag(TRUE);								//ウインドウがアクティブじゃなくても動かす
 	SetOutApplicationLogValidFlag(FALSE);				//ログを出力をしない
-	SetMainWindowText("苛烈弾幕");						//ゲームごとに手動でかえる -> どうにかならんか
+	SetMainWindowText("FlawlessSilverBullet");			//フォームの名前
 
-	ChangeWindowMode(TRUE);
+	ChangeWindowMode(TRUE);		//FALSEで全画面
 	SetGraphMode(640, 480, 32);	//スクリーンの大きさ
 
 	if (DxLib_Init() == -1) return false;
