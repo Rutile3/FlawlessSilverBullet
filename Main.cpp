@@ -1,3 +1,5 @@
+#pragma warning(disable:4996)
+
 #include "Main.h"
 
 using namespace std;
@@ -9,10 +11,24 @@ void CollisionEnemyShip();
 void CreateEnemy();
 void Draw();
 void EndGame();
+bool ReadEnemyPattern();
 void GameMain();
 void OutSide();
 void OutSideSub(vector<cMover*> &ve);
 bool InitDxLibrary();
+
+class enemyPattern {
+public:
+	enemyPattern(int count, int number, int x, int y, int z) {
+		this->count = count;
+		this->number = number;
+		this->x = x;
+		this->y = y;
+		this->z = z;
+	}
+	int count, number, x, y, z;
+};
+vector<enemyPattern*> enemy_pattern;
 
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	if (InitDxLibrary() == false) return -1;
@@ -21,6 +37,8 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	key = new cKey();
 	my_ship = new myShip(320, 400, 200, 12, 0, 5);
 	my_shield = new myShield(my_ship->x,my_ship->y,my_ship->z,0,0,0);
+	if (ReadEnemyPattern() == false)
+		return -1;
 
 	while (ProcessMessage() != -1) {
 		ClearDrawScreen();
@@ -41,6 +59,7 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	EndGame();
 	delete fps;
 	delete key;
+	DxLib_End();
 
 	return 0;
 }
@@ -71,11 +90,19 @@ void Calc() {
 //本来ならファイルから読み出す
 void CreateEnemy() {
 	//デバッグ用に敵を量産
-	if (main_count % 30 == 0)
-		enemy_ship.push_back(new testNCircle(main_count % 640, -10, 200, 16, 3.141592f / 2, 3));
+	//if (main_count % 30 == 0)
+	//	enemy_ship.push_back(new testNCircle(main_count % 640, -10, 200, 16, 3.141592f / 2, 3));
 	//デバッグ用 個体テスト
 	//if (main_count % 2000 == 0)
 	//	enemy_ship.push_back(new testNWay(320, 200, 200, 16, 3.141592 / 2, 0));
+	while (true) {
+		if (main_count == enemy_pattern[0]->count) {
+			enemy_ship.push_back(new testNCircle(enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, enemy_pattern[0]->number, 3.141592f / 2, 3));
+			enemy_pattern.erase(enemy_pattern.begin());
+		}
+		else
+			break;
+	}
 }
 
 void Collision() {
@@ -180,6 +207,27 @@ void Draw() {
 	my_ship->Draw();
 	for (int i = 0; i < enemy_bullet.size(); i++)
 		enemy_bullet[i]->Draw();
+}
+
+bool ReadEnemyPattern() {
+	FILE *fp;
+	int count, number, x, y, z;
+	char buf[50];
+
+
+	enemy_pattern.clear();
+	if ((fp = fopen("enemy_pattern.csv", "r")) == NULL)	return false;
+	if (fscanf(fp, "%s", buf) == EOF)					return false;
+	while (true) {
+		if (fscanf(fp, "%[,]", buf) == EOF)										break;
+		if (fscanf(fp, "%d,%d,%d,%d,%d", &count, &number, &x, &y, &z) == EOF)	break;
+		enemy_pattern.push_back(new enemyPattern(count, number, x, y, z));
+	}
+	enemy_pattern.erase(enemy_pattern.begin());//先端のごみを削除
+	enemy_pattern.push_back(new enemyPattern(216000, 0, 0, 0, 0));//終端にデータを挿入してデータがない場合の処理を簡略化
+	fclose(fp);
+
+	return true;
 }
 
 bool InitDxLibrary() {
