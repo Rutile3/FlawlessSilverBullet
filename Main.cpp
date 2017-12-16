@@ -11,6 +11,7 @@ void Draw();
 void EndGame();
 void GameMain();
 void OutSide();
+void OutSideSub(vector<cMover*> &ve);
 bool InitDxLibrary();
 
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
@@ -152,16 +153,16 @@ EnemyShip_Collision_MyBullet:
 }
 
 void OutSide() {
-	//ŠÖ”‚âƒ}ƒNƒ‚Å‚Ü‚Æ‚ß‚ê‚»‚¤
-	for (int i = 0; i < enemy_ship.size(); i++)
-		if( enemy_ship[i]->OutSide())
-			enemy_ship.erase(enemy_ship.begin() + i);
-	for (int i = 0; i < my_bullet.size(); i++)
-		if (my_bullet[i]->OutSide())
-			my_bullet.erase(my_bullet.begin() + i);
-	for (int i = 0; i < enemy_bullet.size(); i++)
-		if (enemy_bullet[i]->OutSide())
-			enemy_bullet.erase(enemy_bullet.begin() + i);
+	OutSideSub(enemy_bullet);
+	OutSideSub(enemy_ship);
+	OutSideSub(my_bullet);
+}
+
+void OutSideSub(vector<cMover*> &ve) {
+	//for‚¾‚Æ‘S–Ô—…‚Å‚«‚È‚¢‚ª‚µ‚È‚­‚Ä‚à‚»‚ê‚Ù‚Ç–â‘è‚È‚¢‚µ”ÏG‚É‚È‚é‚Ì‚Å‚¢‚Ü‚Í‚±‚ê‚Å‚¢‚¢
+	for (int i = 0; i < ve.size(); i++)
+		if (ve[i]->OutSide())
+			ve.erase(ve.begin() + i);
 }
 
 void Draw() {
