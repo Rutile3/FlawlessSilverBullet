@@ -4,6 +4,8 @@
 #include <DxLib.h>
 #include <math.h>
 #include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 
 class cMover {
 public:
