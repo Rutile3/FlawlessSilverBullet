@@ -111,8 +111,6 @@ private:
 };
 
 
-
-
 //ƒeƒXƒg
 class testSpiralShotPattern :public cMover {
 public:
