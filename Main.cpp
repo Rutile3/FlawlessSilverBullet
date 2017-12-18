@@ -87,7 +87,6 @@ void Calc() {
 		enemy_bullet[i]->Calc();
 }
 
-//本来ならファイルから読み出す
 void CreateEnemy() {
 	//デバッグ用に敵を量産
 	//if (main_count % 30 == 0)
@@ -100,25 +99,25 @@ void CreateEnemy() {
 			int x = enemy_pattern[0]->x;
 			int y = enemy_pattern[0]->y;
 			int z = enemy_pattern[0]->z;
-			//1000番台はデバッグ用固定
-			//2000番台はデバッグ用動く
-			//3000番台は雑魚敵
 			switch (enemy_pattern[0]->number) {
+			//1000番台はデバッグ用固定
 			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, 3.141592f / 2, 0)); break;
 			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 0)); break;
 			case 1002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 0)); break;
 			case 1003:enemy_ship.push_back(new testNWay(					x, y, z, 16, 3.141592f / 2, 0)); break;
 			case 1004:enemy_ship.push_back(new testNCircle(					x, y, z, 16, 3.141592f / 2, 0)); break;
+			//2000番台はデバッグ用動く
 			case 2000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, 3.141592f / 2, 3)); break;
 			case 2001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 3)); break;
 			case 2002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 3)); break;
 			case 2003:enemy_ship.push_back(new testNWay(	x, y, z, 16, 3.141592f / 2, 3)); break;
 			case 2004:enemy_ship.push_back(new testNCircle(	x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 3001:enemy_ship.push_back(new xLV(			x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 3002:enemy_ship.push_back(new inFront(		x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 3003:enemy_ship.push_back(new slalomFront(	x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 3004:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, 3.141592f / 4, 3)); break;
-			case 3005:enemy_ship.push_back(new cutInRight(	x, y, z, 16, 3.141592f / 4*3, 3)); break;
+			//3000番台は雑魚敵
+			case 3000:enemy_ship.push_back(new xLV(			x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 3001:enemy_ship.push_back(new inFront(		x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, 3.141592f / 4, 3)); break;
+			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, 3.141592f / 4*3, 3)); break;
 			default:
 				assert(false);
 				break; 
@@ -128,6 +127,28 @@ void CreateEnemy() {
 		else
 			break;
 	}
+}
+
+bool ReadEnemyPattern() {
+	FILE *fp;
+	int count, number, x, y, z;
+	char buf[50];
+
+	//改良の余地がかなりある
+	enemy_pattern.clear();
+	if ((fp = fopen("enemy_pattern.csv", "r")) == NULL)	return false;
+	if (fscanf(fp, "%s", buf) == EOF)					return false;
+	while (true) {
+		if (fscanf(fp, "%[,]", buf) == EOF)										break;
+		if (fscanf(fp, "%d,%d,%d,%d,%d", &count, &number, &x, &y, &z) == EOF)	break;
+		enemy_pattern.push_back(new enemyPattern(count, number, x, y, z));
+	}
+	//ここの処理をなくしたい
+	enemy_pattern.erase(enemy_pattern.begin());//先端のごみを削除
+	enemy_pattern.push_back(new enemyPattern(216000, 0, 0, 0, 0));//終端にデータを挿入してデータがない場合の処理を簡略化
+	fclose(fp);
+
+	return true;
 }
 
 void Collision() {
@@ -232,27 +253,6 @@ void Draw() {
 	my_ship->Draw();
 	for (int i = 0; i < enemy_bullet.size(); i++)
 		enemy_bullet[i]->Draw();
-}
-
-bool ReadEnemyPattern() {
-	FILE *fp;
-	int count, number, x, y, z;
-	char buf[50];
-
-
-	enemy_pattern.clear();
-	if ((fp = fopen("enemy_pattern.csv", "r")) == NULL)	return false;
-	if (fscanf(fp, "%s", buf) == EOF)					return false;
-	while (true) {
-		if (fscanf(fp, "%[,]", buf) == EOF)										break;
-		if (fscanf(fp, "%d,%d,%d,%d,%d", &count, &number, &x, &y, &z) == EOF)	break;
-		enemy_pattern.push_back(new enemyPattern(count, number, x, y, z));
-	}
-	enemy_pattern.erase(enemy_pattern.begin());//先端のごみを削除
-	enemy_pattern.push_back(new enemyPattern(216000, 0, 0, 0, 0));//終端にデータを挿入してデータがない場合の処理を簡略化
-	fclose(fp);
-
-	return true;
 }
 
 bool InitDxLibrary() {
