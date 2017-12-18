@@ -97,26 +97,30 @@ void CreateEnemy() {
 	//	enemy_ship.push_back(new testNWay(320, 200, 200, 16, 3.141592 / 2, 0));
 	while (true) {
 		if (main_count == enemy_pattern[0]->count) {
+			int x = enemy_pattern[0]->x;
+			int y = enemy_pattern[0]->y;
+			int z = enemy_pattern[0]->z;
+			//1000番台はデバッグ用固定
+			//2000番台はデバッグ用動く
+			//3000番台は雑魚敵
 			switch (enemy_pattern[0]->number) {
-				//1000番台はデバッグ用固定
-				//2000番台はデバッグ用動く
-				//3000番台は雑魚敵
-			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 0)); break;
-			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 0)); break;
-			case 1002:enemy_ship.push_back(new testBothSpiralShotPatten(	enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 0)); break;
-			case 1003:enemy_ship.push_back(new testNWay(					enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 0)); break;
-			case 1004:enemy_ship.push_back(new testNCircle(					enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 0)); break;
-			case 2000:enemy_ship.push_back(new testSpiralShotPattern(		enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 2001:enemy_ship.push_back(new testMultiSpiralShotPatten(	enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 2002:enemy_ship.push_back(new testBothSpiralShotPatten(	enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 2003:enemy_ship.push_back(new testNWay(					enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 2004:enemy_ship.push_back(new testNCircle(					enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 3001:enemy_ship.push_back(new xLV(							enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 3002:enemy_ship.push_back(new inFront(						enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 3003:enemy_ship.push_back(new slalomFront(					enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 2, 3)); break;
-			case 3004:enemy_ship.push_back(new cutInLeft(					enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 4, 3)); break;
-			case 3005:enemy_ship.push_back(new cutInRight(					enemy_pattern[0]->x, enemy_pattern[0]->y, enemy_pattern[0]->z, 16, 3.141592f / 4*3, 3)); break;
+			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, 3.141592f / 2, 0)); break;
+			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 0)); break;
+			case 1002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 0)); break;
+			case 1003:enemy_ship.push_back(new testNWay(					x, y, z, 16, 3.141592f / 2, 0)); break;
+			case 1004:enemy_ship.push_back(new testNCircle(					x, y, z, 16, 3.141592f / 2, 0)); break;
+			case 2000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 2001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 2002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 2003:enemy_ship.push_back(new testNWay(	x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 2004:enemy_ship.push_back(new testNCircle(	x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 3001:enemy_ship.push_back(new xLV(			x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 3002:enemy_ship.push_back(new inFront(		x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 3003:enemy_ship.push_back(new slalomFront(	x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 3004:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, 3.141592f / 4, 3)); break;
+			case 3005:enemy_ship.push_back(new cutInRight(	x, y, z, 16, 3.141592f / 4*3, 3)); break;
 			default:
+				assert(false);
 				break; 
 			}
 			enemy_pattern.erase(enemy_pattern.begin());
