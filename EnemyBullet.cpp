@@ -30,7 +30,7 @@ void NWay(float x, float y, float z, float r, float angle, float angle_renge, fl
 }
 
 void NCircle(float x, float y, float z, float r, float angle, float speed, float shots) {
-	NWay(x, y, z, r, angle, 2 * 3.141592f, speed, shots - 1);
+	NWay(x, y, z, r, angle, 2 * PI, speed, shots - 1);
 }
 
 //’e–‹(ƒNƒ‰ƒX)
@@ -59,10 +59,10 @@ multiSpiralShotPatten::multiSpiralShotPatten() {}
 multiSpiralShotPatten::multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int  way) {
 	if (way < 0) {
 		way *= -1;
-		angle += 3.141592f;
+		angle += PI;
 	}
 	for (int i = 0; i < way; i++) {
-		float tmp_angle = angle + 2 * 3.141592f / way * i;
+		float tmp_angle = angle + 2 * PI / way * i;
 		spiral_shot_pattern.push_back(new spiralShotPattern(x, y, z, r, tmp_angle, angle_rate, speed, interval));
 	}
 }

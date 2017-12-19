@@ -6,8 +6,6 @@ using namespace std;
 
 void Calc();
 void Collision();
-void CollisionEnemyBullet();
-void CollisionEnemyShip();
 void CreateEnemy();
 void Draw();
 void EndGame();
@@ -105,7 +103,7 @@ void Calc() {
 void CreateEnemy() {
 	//デバッグ用に敵を量産
 	//if (main_count % 30 == 0)
-	//	enemy_ship.push_back(new testNCircle(main_count % 640, -10, 200, 16, 3.141592f / 2, 3));
+	//	enemy_ship.push_back(new testNCircle(main_count % 640, -10, 200, 16, PI / 2, 3));
 	//デバッグ用 個体テスト
 	//if (main_count % 2000 == 0)
 	//	enemy_ship.push_back(new testNWay(320, 200, 200, 16, 3.141592 / 2, 0));
@@ -116,23 +114,23 @@ void CreateEnemy() {
 			int z = enemy_pattern[0]->z;
 			switch (enemy_pattern[0]->number) {
 			//1000番台はデバッグ用固定
-			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, 3.141592f / 2, 0)); break;
-			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 0)); break;
-			case 1002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 0)); break;
-			case 1003:enemy_ship.push_back(new testNWay(					x, y, z, 16, 3.141592f / 2, 0)); break;
-			case 1004:enemy_ship.push_back(new testNCircle(					x, y, z, 16, 3.141592f / 2, 0)); break;
+			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, PI / 2, 0)); break;
+			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, PI / 2, 0)); break;
+			case 1002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, PI / 2, 0)); break;
+			case 1003:enemy_ship.push_back(new testNWay(					x, y, z, 16, PI / 2, 0)); break;
+			case 1004:enemy_ship.push_back(new testNCircle(					x, y, z, 16, PI / 2, 0)); break;
 			//2000番台はデバッグ用動く
-			case 2000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 2001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 2002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 2003:enemy_ship.push_back(new testNWay(	x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 2004:enemy_ship.push_back(new testNCircle(	x, y, z, 16, 3.141592f / 2, 3)); break;
+			case 2000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, PI / 2, 3)); break;
+			case 2001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, PI / 2, 3)); break;
+			case 2002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, PI / 2, 3)); break;
+			case 2003:enemy_ship.push_back(new testNWay(	x, y, z, 16, PI / 2, 3)); break;
+			case 2004:enemy_ship.push_back(new testNCircle(	x, y, z, 16, PI / 2, 3)); break;
 			//3000番台は雑魚敵
-			case 3000:enemy_ship.push_back(new xLV(			x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 3001:enemy_ship.push_back(new inFront(		x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, 3.141592f / 2, 3)); break;
-			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, 3.141592f / 4, 3)); break;
-			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, 3.141592f / 4*3, 3)); break;
+			case 3000:enemy_ship.push_back(new xLV(			x, y, z, 16, PI / 2, 3)); break;
+			case 3001:enemy_ship.push_back(new inFront(		x, y, z, 16, PI / 2, 3)); break;
+			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, PI / 2, 3)); break;
+			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, PI / 4, 3)); break;
+			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4*3, 3)); break;
 			default:
 				assert(false);
 				break; 
@@ -167,25 +165,16 @@ bool ReadEnemyPattern() {
 }
 
 void Collision() {
-	CollisionEnemyBullet();
-	CollisionEnemyShip();
-}
-
-//敵弾->シールドと自機
-void CollisionEnemyBullet() {
+	//敵弾->シールドと自機
 	for (int i = 0; i < enemy_bullet.size(); i++) {
 		enemy_bullet[i]->Hit(my_shield);
 		enemy_bullet[i]->Hit(my_ship);
 	}
-}
-
-//敵機->自弾と自機
-void CollisionEnemyShip() {
+	//敵機->自弾と自機
 	for (int i = 0; i < enemy_ship.size(); i++) {
-		for (int j = 0; j < my_bullet.size(); j++) {
+		for (int j = 0; j < my_bullet.size(); j++)
 			enemy_ship[i]->Hit(my_bullet[j]);
-			enemy_ship[i]->Hit(my_ship);
-		}
+		enemy_ship[i]->Hit(my_ship);
 	}
 }
 

@@ -28,7 +28,7 @@ void myShip::Calc(){
 void myShip::Draw() {
 	DrawPixel(x, y, GetColor(255, 255, 255));
 	DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);
-	DrawCircle(x, y, r * 1.5, GetColor(255, 255, 255), FALSE);		//画像を張る
+	DrawCircle(x, y, r * 1.5f, GetColor(255, 255, 255), FALSE);		//画像を張る
 	printfDx("energy = %d\n", energy);								//デバッグ用
 	printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
 	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
@@ -62,7 +62,7 @@ void myShip::Move() {
 void myShip::Shot() {
 	if (key->z->State() && key->x->State() == false && energy > 0) {
 		if (shot_count++ % 6 == 0) {
-			my_bullet.push_back(new myBullet(x, y, z, 0, 3.141592f / 2 * 3, 24));
+			my_bullet.push_back(new myBullet(x, y, z, 0, PI / 2 * 3, 24));
 			//効果音を出す
 			energy -= 4;//射出時にエネルギーを減らす
 		}
@@ -126,7 +126,7 @@ myBullet::myBullet() {}
 myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	float x = my_ship->x - mover.x;
 	float y = my_ship->y - mover.y;
-	angle = atan2(y,x)+3.141592f;
+	angle = atan2(y,x)+PI;
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
 }

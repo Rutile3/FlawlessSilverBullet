@@ -100,7 +100,7 @@ void cutInLeft::Calc() {
 void cutInLeft::Move() {
 	if (fit_x) {
 		if (count < 4) {
-			angle += 3.141592f / 16;
+			angle += PI / 16;
 			count++;
 		}
 	}
@@ -123,7 +123,7 @@ void cutInRight::Calc() {
 void cutInRight::Move() {
 	if (fit_x) {
 		if (count < 4) {
-			angle -= 3.141592f / 16;
+			angle -= PI / 16;
 			count++;
 		}
 	}

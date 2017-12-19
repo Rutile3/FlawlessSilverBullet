@@ -3,10 +3,10 @@
 
 #include <assert.h>//ïségóp
 #include <DxLib.h>
-#include <math.h>
 #include <vector>
 
 #include "GameKeyManager.h"
+#include "RutileMath.h"
 
 #include "Mover.h"
 
