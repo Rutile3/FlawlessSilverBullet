@@ -16,6 +16,8 @@ void GameMain();
 void OutSide();
 void OutSideSub(vector<cMover*> &ve);
 bool InitDxLibrary();
+void InitGame();
+void Title();
 
 class enemyPattern {
 public:
@@ -30,13 +32,18 @@ public:
 };
 vector<enemyPattern*> enemy_pattern;
 
+enum GAME_MODE {
+	TITLE,
+	GAME_MAIN
+};
+GAME_MODE game_mode;
+
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	if (InitDxLibrary() == false) return -1;
 	main_count = 0;
 	fps = new fpsManager(60);
 	key = new cKey();
-	my_ship = new myShip(320, 400, 200, 12, 0, 5);
-	my_shield = new myShield(my_ship->x,my_ship->y,my_ship->z,0,0,0);
+	InitGame();
 	if (ReadEnemyPattern() == false)
 		return -1;
 
@@ -47,8 +54,12 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 		key->Update();
 		if (key->esc->Push())
 			break;
-
-		GameMain();
+		switch (game_mode) {
+		case TITLE:		Title();	break;
+		case GAME_MAIN: GameMain(); break;
+		default:
+			break;
+		}
 
 		fps->Draw(true);
 		ScreenFlip();
@@ -62,6 +73,16 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	DxLib_End();
 
 	return 0;
+}
+
+void Title() {
+	printfDx("FlawlessSilverBullet\n");
+	printfDx("Please Z Key\n");
+
+	if (key->z->Push() == true) {
+		game_mode = GAME_MAIN;
+		main_count = 0;
+	}
 }
 
 void GameMain() {
@@ -246,7 +267,7 @@ void Draw() {
 
 	//ìGã@->é©íe->é©ã@ÉVÅ[ÉãÉh->é©ã@->ìGíe
 	for (int i = 0; i < enemy_ship.size(); i++)
-		enemy_ship[i]->Draw();
+		enemy_ship[i]->Draw();//Ç‹Ç∆ÇﬂÇÍÇÈÇØÇ«Ç‹Ç∆ÇﬂÇÒÇ≈Ç‡ì«ÇﬂÇÈÇ©ÇÁÇ±ÇÃÇ‹Ç‹Ç…Ç∑ÇÈÅB
 	for (int i = 0; i < my_bullet.size(); i++)
 		my_bullet[i]->Draw();
 	my_shield->Draw();
@@ -266,6 +287,12 @@ bool InitDxLibrary() {
 	if (DxLib_Init() == -1) return false;
 	SetDrawScreen(DX_SCREEN_BACK);
 	return true;
+}
+
+void InitGame() {
+	game_mode = GAME_MAIN;
+	my_ship = new myShip(320, 400, 200, 12, 0, 5);
+	my_shield = new myShield(my_ship->x, my_ship->y, my_ship->z, 0, 0, 0);
 }
 
 void EndGame() {
