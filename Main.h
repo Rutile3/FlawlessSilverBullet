@@ -7,6 +7,7 @@
 
 #include "FpsManager.h"
 #include "GameKeyManager.h"
+#include "RutileMath.h"
 
 #include "EnemyBullet.h"
 #include "EnemyShip.h"

@@ -2,10 +2,11 @@
 #define _MOVER_
 
 #include <DxLib.h>
-#include <math.h>
 #include <vector>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "RutileMath.h"
 
 class cMover {
 public:
