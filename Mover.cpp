@@ -32,12 +32,6 @@ void cMover::Draw() {
 	DrawPixel(x, y, GetColor(z, z, z));
 	DrawCircle(x, y, r, GetColor(z, z, z), z == 200 ? TRUE : FALSE);
 }
-bool cMover::Hit(cMover* mover) {
-	float r = this->r + mover->r;
-	float x = this->x - mover->x;
-	float y = this->y - mover->y;
-	return x*x + y*y < r*r;
-}
 bool cMover::OutSide() {
 	//return ... ‚Å‚Å‚«‚»‚¤
 	if (x > 640 + 50 || x < -50 ||

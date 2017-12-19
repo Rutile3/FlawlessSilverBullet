@@ -14,6 +14,12 @@
 
 using namespace std;
 
+enum GAME_MODE {
+	TITLE,
+	GAME_MAIN
+};
+GAME_MODE game_mode;
+
 int main_count;
 fpsManager* fps;
 cKey* key;

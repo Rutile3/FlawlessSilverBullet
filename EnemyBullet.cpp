@@ -4,6 +4,16 @@
 directionalBullet::directionalBullet() {}
 directionalBullet::directionalBullet(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {}
 directionalBullet::~directionalBullet() {}
+void directionalBullet::Hit(cMover* mover) {
+	float r = this->r + mover->r;//説明変数
+	float x = this->x - mover->x;
+	float y = this->y - mover->y;
+	if (x*x + y*y < r*r) {
+		mover->Hit(this);
+		this->x = 184184;//場外に移動させて場外判定で消す
+		//爆破エフェクト
+	}
+}
 
 
 //弾幕(関数)

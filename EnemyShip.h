@@ -20,18 +20,11 @@ public:
 	enemyShip(float x, float y, float z, float r, float angle, float speed);
 	~enemyShip();
 
-	void Calc();
-
-private:
-	int count;
-	spiralShotPattern* spiralshot;
-
-	void Move();
-	void Shot();
+	void Hit(cMover* mover);
 };
 
 //45°で撃ってくるやつ
-class xLV :public cMover {
+class xLV :public enemyShip {
 public:
 	xLV();
 	xLV(float x, float y, float z, float r, float angle, float speed);
@@ -47,7 +40,7 @@ private:
 };
 
 //愚直に直進
-class inFront :public cMover {
+class inFront :public enemyShip {
 public:
 	inFront();
 	inFront(float x, float y, float z, float r, float angle, float speed);
@@ -62,7 +55,7 @@ private:
 };
 
 //スラローム射撃（前方）※上から以外出してはいけない！！
-class slalomFront :public cMover {
+class slalomFront :public enemyShip {
 public:
 	slalomFront();
 	slalomFront(float x, float y, float z, float r, float angle, float speed);
@@ -77,7 +70,7 @@ private:
 };
 
 //x軸が合うと直進※45°以外で呼び出さない！！
-class cutInLeft :public cMover {
+class cutInLeft :public enemyShip {
 public:
 	cutInLeft();
 	cutInLeft(float x, float y, float z, float r, float angle, float speed);
@@ -94,7 +87,7 @@ private:
 };
 
 //x軸が合うと直進※45°以外で呼び出さない！！
-class cutInRight :public cMover {
+class cutInRight :public enemyShip {
 public:
 	cutInRight();
 	cutInRight(float x, float y, float z, float r, float angle, float speed);
@@ -112,7 +105,7 @@ private:
 
 
 //テスト
-class testSpiralShotPattern :public cMover {
+class testSpiralShotPattern :public enemyShip {
 public:
 	testSpiralShotPattern();
 	testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed);
@@ -126,7 +119,7 @@ public:
 	void Shot();
 
 };
-class testMultiSpiralShotPatten :public cMover {
+class testMultiSpiralShotPatten :public enemyShip {
 public:
 	testMultiSpiralShotPatten();
 	testMultiSpiralShotPatten(float x, float y, float z, float r, float angle, float speed);
@@ -140,7 +133,7 @@ public:
 	void Shot();
 
 };
-class testBothSpiralShotPatten :public cMover {
+class testBothSpiralShotPatten :public enemyShip {
 public:
 	testBothSpiralShotPatten();
 	testBothSpiralShotPatten(float x, float y, float z, float r, float angle, float speed);
@@ -154,7 +147,7 @@ public:
 	void Shot();
 
 };
-class testNWay :public cMover {
+class testNWay :public enemyShip {
 public:
 	testNWay();
 	testNWay(float x, float y, float z, float r, float angle, float speed);
@@ -168,7 +161,7 @@ private:
 	void Move();
 	void Shot();
 };
-class testNCircle :public cMover {
+class testNCircle :public enemyShip {
 public:
 	testNCircle();
 	testNCircle(float x, float y, float z, float r, float angle, float speed);

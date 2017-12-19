@@ -7,7 +7,9 @@ const int energy_max = 800;//800が想定値
 myShip::myShip() {}
 myShip::myShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	energy = energy_max;
+	invincible_count = 0;
 	shot_count = 0;
+	hp = 6;
 }
 myShip::~myShip(){}
 void myShip::Calc(){
@@ -26,9 +28,10 @@ void myShip::Calc(){
 void myShip::Draw() {
 	DrawPixel(x, y, GetColor(255, 255, 255));
 	DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);
-	DrawCircle(x, y, r * 1.5, GetColor(255, 255, 255), FALSE);//画像を張る]
-	printfDx("energy = %d\n", energy);//デバッグ用
-	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);//デバッグ用
+	DrawCircle(x, y, r * 1.5, GetColor(255, 255, 255), FALSE);		//画像を張る
+	printfDx("energy = %d\n", energy);								//デバッグ用
+	printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
+	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
 }
 void myShip::Move() {
 	float naname;
@@ -67,6 +70,23 @@ void myShip::Shot() {
 	else
 		shot_count = 0;
 }
+void myShip::Hit(cMover* mover) {
+	if (invincible_count == 0) {
+		invincible_count = 60;
+		hp--;
+		if (hp <= 0) {
+			this->x = 184184;//場外に移動させて場外判定で消す
+			//爆破エフェクト
+			//爆破音
+		}
+		else {
+			//被弾エフェクト
+			//被弾音
+		}
+	}
+	else
+		invincible_count--;
+}
 
 myShield::myShield() {}
 myShield::myShield(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
@@ -96,6 +116,11 @@ void myShield::Draw() {
 	energy >= energy_max / 5 ? GetColor(100, 200, 200) : GetColor(255, 0, 0);//画像の切り替え
 	DrawCircle(my_ship->x, my_ship->y, r,	GetColor(100, 200, 200), FALSE);//画像を張る
 }
+void myShield::Hit(cMover* mover) {
+	//反射音
+	my_bullet.push_back(new myBullet(*mover));
+}
+
 
 myBullet::myBullet() {}
 myBullet::myBullet(const cMover& mover) :cMover(mover) {
@@ -110,9 +135,15 @@ myBullet::myBullet(float x, float y, float z, float r, float angle, float speed)
 	else if (energy >= energy_max / 4)	this->r = 12;
 	else if (energy >= energy_max / 5)	this->r = 8;
 	else								this->r = 4;
+	hp = this->r;
 }
 myBullet::~myBullet(){}
 void myBullet::Draw() {
 	DrawPixel(x, y, GetColor(z, z, z));
 	DrawCircle(x, y, r, GetColor(z, z-100, z-100), TRUE);
+}
+void myBullet::Hit(cMover* mover) {
+	y = 184184;
+	//被弾エフェクト
+	//被弾音
 }

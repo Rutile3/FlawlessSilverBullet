@@ -18,6 +18,8 @@ public:
 	directionalBullet();
 	directionalBullet(float x, float y, float z, float r, float angle, float speed);//Šp“x‚¢‚ç‚ñ‚©‚à
 	~directionalBullet();
+
+	void Hit(cMover* mover);
 };
 
 //‰QŠª’e
