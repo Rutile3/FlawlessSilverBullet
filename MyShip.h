@@ -23,6 +23,7 @@ public:
 
 	void Calc();
 	void Draw();
+	void Hit(cMover* mover);
 };
 
 class myShip :public cMover {
@@ -37,6 +38,10 @@ public:
 	void Draw();
 	void Move();
 	void Shot();
+	void Hit(cMover* mover);
+
+private:
+	int invincible_count;
 };
 
 class myBullet :public cMover {
@@ -47,6 +52,7 @@ public:
 	~myBullet();
 
 	void Draw();
+	void Hit(cMover* mover);
 };
 
 extern cKey* key;

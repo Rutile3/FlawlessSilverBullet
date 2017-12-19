@@ -14,11 +14,12 @@ public:
 	cMover(float x, float y, float z, float r, float angle, float speed);
 	~cMover();
 
-	float angle, speed, hp, id, r, x, y, z;
+	float angle, speed, id, r, x, y, z;
+	int hp;
 
 	virtual void Calc();
 	virtual void Draw();
-	virtual bool Hit(cMover* mover);
+	virtual void Hit(cMover* mover) = 0;
 	virtual bool OutSide();
 
 protected:

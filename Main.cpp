@@ -32,12 +32,6 @@ public:
 };
 vector<enemyPattern*> enemy_pattern;
 
-enum GAME_MODE {
-	TITLE,
-	GAME_MAIN
-};
-GAME_MODE game_mode;
-
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	if (InitDxLibrary() == false) return -1;
 	main_count = 0;
@@ -179,70 +173,19 @@ void Collision() {
 
 //敵弾->シールドと自機
 void CollisionEnemyBullet() {
-	unsigned int eb_i = 0;
-	while (eb_i < enemy_bullet.size()) {
-		if (enemy_bullet[eb_i]->Hit(my_shield)) {
-			//想定してしる処理
-			if (false) {//敵弾が極太レーザーか
-				//->敵弾と同じエフェクトを生成
-			}
-			else{//その他
-				my_bullet.push_back(new myBullet(*enemy_bullet[eb_i]));
-			}
-			enemy_bullet.erase(enemy_bullet.begin() + eb_i);
-			continue;
-		}
-		else if (enemy_bullet[eb_i]->Hit(my_ship)) {
-			//想定している処理
-			//自機の残機を減らす
-			//自機を無敵にする
-			//敵弾が貫通弾か
-			//->敵弾を削除する
-			enemy_bullet.erase(enemy_bullet.begin() + eb_i);//上の2つを簡略化
-			continue;
-		}
-		eb_i++;
+	for (int i = 0; i < enemy_bullet.size(); i++) {
+		enemy_bullet[i]->Hit(my_shield);
+		enemy_bullet[i]->Hit(my_ship);
 	}
 }
 
 //敵機->自弾と自機
 void CollisionEnemyShip() {
-	//敵機->自弾
-EnemyShip_Collision_MyBullet:
-	unsigned int es_i = 0;//enemy_ship_iの略
-	while (es_i < enemy_ship.size()) {
-		unsigned int mb_i = 0;
-		while (mb_i < my_bullet.size()) {//敵を消した後終端になる可能性があるから
-			if (enemy_ship[es_i]->Hit(my_bullet[mb_i])) {
-				//想定している処理
-				//敵機に自弾分のダメージ
-				//敵機の生存確認
-				//->敵機を削除
-				enemy_ship.erase(enemy_ship.begin() + es_i);//上の3つを簡略化
-				//自弾が通常弾か
-				//->自弾を削除削除
-				my_bullet.erase(my_bullet.begin() + mb_i);
-				goto EnemyShip_Collision_MyBullet;
-			}
-			mb_i++;
+	for (int i = 0; i < enemy_ship.size(); i++) {
+		for (int j = 0; j < my_bullet.size(); j++) {
+			enemy_ship[i]->Hit(my_bullet[j]);
+			enemy_ship[i]->Hit(my_ship);
 		}
-		es_i++;
-	}
-
-	//敵機->自機
-	es_i = 0;
-	while (es_i < enemy_ship.size()) {
-		if (enemy_ship[es_i]->Hit(my_ship)) {
-			//想定してる処理
-			//敵機に固定ダメージ
-			//敵機生存確認
-			//->敵機を削除
-			enemy_ship.erase(enemy_ship.begin() + es_i);//上の3つを簡略化
-			//自機の残機を減らす
-			//自機を無敵にする
-			continue;
-		}
-		es_i++;
 	}
 }
 

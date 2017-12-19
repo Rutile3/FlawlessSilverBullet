@@ -2,22 +2,24 @@
 
 enemyShip::enemyShip() {}
 enemyShip::enemyShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
-	count = 0;
-	spiralshot = new spiralShotPattern(&this->x, &this->y, &this->z, 8, 0, 0.2f, 4, 1);
 }
 enemyShip::~enemyShip() {}
-void enemyShip::Calc() {
-	Move();
-	Shot();
-	count++;
-}
-void enemyShip::Move() {}
-void enemyShip::Shot() {
-	spiralshot->Calc();
+void enemyShip::Hit(cMover* mover) {
+	float r = this->r + mover->r;//説明変数
+	float x = this->x - mover->x;
+	float y = this->y - mover->y;
+	if (x*x + y*y < r*r) {
+		mover->Hit(this);
+		hp -= mover->hp;
+		if (hp <= 0) {
+			this->x = 184184;//場外に移動させて場外判定で消す
+			//爆破エフェクト
+		}
+	}
 }
 
 xLV::xLV() {}
-xLV::xLV(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+xLV::xLV(float x, float y, float z, float r, float angle, float speed) : enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 }
 xLV::~xLV() {}
@@ -41,7 +43,7 @@ void xLV::Shot() {
 }
 
 inFront::inFront() {}
-inFront::inFront(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+inFront::inFront(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 }
 inFront::~inFront() {}
@@ -64,7 +66,7 @@ void inFront::Shot() {
 }
 
 slalomFront::slalomFront() {}
-slalomFront::slalomFront(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+slalomFront::slalomFront(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 }
 slalomFront::~slalomFront() {}
@@ -87,7 +89,7 @@ void slalomFront::Shot() {
 }
 
 cutInLeft::cutInLeft() {}
-cutInLeft::cutInLeft(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+cutInLeft::cutInLeft(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 	fit_x = false;
 }
@@ -110,7 +112,7 @@ void cutInLeft::Move() {
 }
 
 cutInRight::cutInRight() {}
-cutInRight::cutInRight(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+cutInRight::cutInRight(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 	fit_x = false;
 }
@@ -135,7 +137,7 @@ void cutInRight::Move() {
 
 //テスト
 testSpiralShotPattern::testSpiralShotPattern() {}
-testSpiralShotPattern::testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+testSpiralShotPattern::testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 	spiralshot = new spiralShotPattern(&this->x, &this->y, &this->z, 8, angle, -0.2f, 4, 1);
 }
@@ -156,7 +158,7 @@ void testSpiralShotPattern::Shot() {
 }
 
 testMultiSpiralShotPatten::testMultiSpiralShotPatten() {}
-testMultiSpiralShotPatten::testMultiSpiralShotPatten(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+testMultiSpiralShotPatten::testMultiSpiralShotPatten(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 	multiple_spiral_shot_patten = new multiSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3f, 6, 6, -3);
 }
@@ -177,7 +179,7 @@ void testMultiSpiralShotPatten::Shot() {
 }
 
 testBothSpiralShotPatten::testBothSpiralShotPatten() {}
-testBothSpiralShotPatten::testBothSpiralShotPatten(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+testBothSpiralShotPatten::testBothSpiralShotPatten(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 	both_spiral_shot_patten = new bothSpiralShotPatten(&this->x, &this->y, &this->z, 8, angle, 0.3f, 6, 6, 5, angle, -0.1f, 6, 3, -3);
 }
@@ -198,7 +200,7 @@ void testBothSpiralShotPatten::Shot() {
 }
 
 testNWay::testNWay() {}
-testNWay::testNWay(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+testNWay::testNWay(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 }
 testNWay::~testNWay() {}
@@ -221,7 +223,7 @@ void testNWay::Shot() {
 }
 
 testNCircle::testNCircle() {}
-testNCircle::testNCircle(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+testNCircle::testNCircle(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
 }
 testNCircle::~testNCircle() {}
