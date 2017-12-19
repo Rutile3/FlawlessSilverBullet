@@ -114,5 +114,5 @@ myBullet::myBullet(float x, float y, float z, float r, float angle, float speed)
 myBullet::~myBullet(){}
 void myBullet::Draw() {
 	DrawPixel(x, y, GetColor(z, z, z));
-	DrawCircle(x, y, r, GetColor(z, z-100, z-100), FALSE);
+	DrawCircle(x, y, r, GetColor(z, z-100, z-100), TRUE);
 }

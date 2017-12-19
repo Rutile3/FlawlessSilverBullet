@@ -30,7 +30,7 @@ void cMover::Calc() {
 }
 void cMover::Draw() {
 	DrawPixel(x, y, GetColor(z, z, z));
-	DrawCircle(x, y, r, GetColor(z, z, z), FALSE);
+	DrawCircle(x, y, r, GetColor(z, z, z), z == 200 ? TRUE : FALSE);
 }
 bool cMover::Hit(cMover* mover) {
 	float r = this->r + mover->r;
