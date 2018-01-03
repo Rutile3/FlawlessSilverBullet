@@ -100,48 +100,6 @@ void Calc() {
 		enemy_bullet[i]->Calc();
 }
 
-void CreateEnemy() {
-	//デバッグ用に敵を量産
-	//if (main_count % 30 == 0)
-	//	enemy_ship.push_back(new testNCircle(main_count % 640, -10, 200, 16, PI / 2, 3));
-	//デバッグ用 個体テスト
-	//if (main_count % 2000 == 0)
-	//	enemy_ship.push_back(new testNWay(320, 200, 200, 16, 3.141592 / 2, 0));
-	while (enemy_pattern.empty() == false) {
-		if (main_count == enemy_pattern[0]->count) {
-			int x = enemy_pattern[0]->x;
-			int y = enemy_pattern[0]->y;
-			int z = enemy_pattern[0]->z;
-			switch (enemy_pattern[0]->number) {
-			//1000番台はデバッグ用固定
-			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, PI / 2, 0)); break;
-			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, PI / 2, 0)); break;
-			case 1002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, PI / 2, 0)); break;
-			case 1003:enemy_ship.push_back(new testNWay(					x, y, z, 16, PI / 2, 0)); break;
-			case 1004:enemy_ship.push_back(new testNCircle(					x, y, z, 16, PI / 2, 0)); break;
-			//2000番台はデバッグ用動く
-			case 2000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, PI / 2, 3)); break;
-			case 2001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, PI / 2, 3)); break;
-			case 2002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, PI / 2, 3)); break;
-			case 2003:enemy_ship.push_back(new testNWay(	x, y, z, 16, PI / 2, 3)); break;
-			case 2004:enemy_ship.push_back(new testNCircle(	x, y, z, 16, PI / 2, 3)); break;
-			//3000番台は雑魚敵
-			case 3000:enemy_ship.push_back(new xLV(			x, y, z, 16, PI / 2, 3)); break;
-			case 3001:enemy_ship.push_back(new inFront(		x, y, z, 16, PI / 2, 3)); break;
-			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, PI / 2, 3)); break;
-			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, PI / 4, 3)); break;
-			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4*3, 3)); break;
-			default:
-				assert(false);
-				break; 
-			}
-			enemy_pattern.erase(enemy_pattern.begin());
-		}
-		else
-			break;
-	}
-}
-
 bool ReadEnemyPattern() {
 	FILE *fp;
 	int count, number, x, y, z;
@@ -215,6 +173,48 @@ bool InitDxLibrary() {
 	if (DxLib_Init() == -1) return false;
 	SetDrawScreen(DX_SCREEN_BACK);
 	return true;
+}
+
+void CreateEnemy() {
+	//デバッグ用に敵を量産
+	//if (main_count % 30 == 0)
+	//	enemy_ship.push_back(new testNCircle(main_count % 640, -10, 200, 16, PI / 2, 3));
+	//デバッグ用 個体テスト
+	//if (main_count % 2000 == 0)
+	//	enemy_ship.push_back(new testNWay(320, 200, 200, 16, 3.141592 / 2, 0));
+	while (enemy_pattern.empty() == false) {
+		if (main_count == enemy_pattern[0]->count) {
+			int x = enemy_pattern[0]->x;
+			int y = enemy_pattern[0]->y;
+			int z = enemy_pattern[0]->z;
+			switch (enemy_pattern[0]->number) {
+			//1000番台はデバッグ用固定
+			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, PI / 2, 0)); break;
+			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, PI / 2, 0)); break;
+			case 1002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, PI / 2, 0)); break;
+			case 1003:enemy_ship.push_back(new testNWay(					x, y, z, 16, PI / 2, 0)); break;
+			case 1004:enemy_ship.push_back(new testNCircle(					x, y, z, 16, PI / 2, 0)); break;
+			//2000番台はデバッグ用動く
+			case 2000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, PI / 2, 3)); break;
+			case 2001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, PI / 2, 3)); break;
+			case 2002:enemy_ship.push_back(new testBothSpiralShotPatten(	x, y, z, 16, PI / 2, 3)); break;
+			case 2003:enemy_ship.push_back(new testNWay(	x, y, z, 16, PI / 2, 3)); break;
+			case 2004:enemy_ship.push_back(new testNCircle(	x, y, z, 16, PI / 2, 3)); break;
+			//3000番台は雑魚敵
+			case 3000:enemy_ship.push_back(new xLV(			x, y, z, 16, PI / 2, 3)); break;
+			case 3001:enemy_ship.push_back(new inFront(		x, y, z, 16, PI / 2, 3)); break;
+			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, PI / 2, 3)); break;
+			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, PI / 4, 3)); break;
+			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4*3, 3)); break;
+			default:
+				assert(false);
+				break; 
+			}
+			enemy_pattern.erase(enemy_pattern.begin());
+		}
+		else
+			break;
+	}
 }
 
 void InitGame() {
