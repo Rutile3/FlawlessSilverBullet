@@ -7,21 +7,23 @@ cMover::cMover(const cMover& mover) {
 	z = mover.z;
 	r = mover.r;
 	hp = mover.r;//テスト用
+	score = mover.score;
 	angle = mover.angle;
 	speed = mover.speed;
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
 }
-cMover::cMover(float x, float y, float z, float r, float angle, float speed) {
+cMover::cMover(float x, float y, float z, float r, float angle, float speed, int score, int hp) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
 	this->r = r;
-	this->hp = r;//テスト用
 	this->angle = angle;
 	this->speed = speed;
 	this->add_x = speed*cos(angle);
 	this->add_y = speed*sin(angle);
+	this->hp = hp;
+	this->score = score;
 }
 cMover::~cMover() {}
 void cMover::Calc() {
