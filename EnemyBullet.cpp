@@ -10,7 +10,7 @@ void directionalBullet::Hit(cMover* mover) {
 	float y = this->y - mover->y;
 	if (x*x + y*y < r*r) {
 		mover->Hit(this);
-		this->x = 184184;//場外に移動させて場外判定で消す
+		this->x = -184184;//場外に移動させて場外判定で消す
 		//爆破エフェクト
 	}
 }

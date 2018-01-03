@@ -107,7 +107,7 @@ void CreateEnemy() {
 	//デバッグ用 個体テスト
 	//if (main_count % 2000 == 0)
 	//	enemy_ship.push_back(new testNWay(320, 200, 200, 16, 3.141592 / 2, 0));
-	while (true) {
+	while (enemy_pattern.empty() == false) {
 		if (main_count == enemy_pattern[0]->count) {
 			int x = enemy_pattern[0]->x;
 			int y = enemy_pattern[0]->y;
@@ -147,18 +147,14 @@ bool ReadEnemyPattern() {
 	int count, number, x, y, z;
 	char buf[50];
 
-	//改良の余地がかなりある
 	enemy_pattern.clear();
 	if ((fp = fopen("enemy_pattern.csv", "r")) == NULL)	return false;
-	if (fscanf(fp, "%s", buf) == EOF)					return false;
+	if (fscanf(fp, "%s\n", buf) == EOF)					return false;
 	while (true) {
 		if (fscanf(fp, "%[,]", buf) == EOF)										break;
-		if (fscanf(fp, "%d,%d,%d,%d,%d", &count, &number, &x, &y, &z) == EOF)	break;
+		if (fscanf(fp, "%d,%d,%d,%d,%d\n", &count, &number, &x, &y, &z) == EOF)	break;
 		enemy_pattern.push_back(new enemyPattern(count, number, x, y, z));
 	}
-	//ここの処理をなくしたい
-	enemy_pattern.erase(enemy_pattern.begin());//先端のごみを削除
-	enemy_pattern.push_back(new enemyPattern(216000, 0, 0, 0, 0));//終端にデータを挿入してデータがない場合の処理を簡略化
 	fclose(fp);
 
 	return true;

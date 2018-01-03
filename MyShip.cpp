@@ -30,6 +30,7 @@ void myShip::Draw() {
 	DrawCircle(x, y, r * 1.5f, GetColor(255, 255, 255), FALSE);		//画像を張る
 	printfDx("energy = %d\n", energy);								//デバッグ用
 	printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
+	printfDx("score = %d\n", score);								//デバッグ用
 	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
 }
 void myShip::Move() {
