@@ -8,7 +8,7 @@ void enemyShip::Hit(cMover* mover) {
 	float r = this->r + mover->r;//à–¾•Ï”
 	float x = this->x - mover->x;
 	float y = this->y - mover->y;
-	if (x*x + y*y < r*r) {
+	if (x*x + y*y < r*r && z == mover->z) {
 		mover->Hit(this);
 		hp -= mover->hp;
 		if (hp <= 0) {
