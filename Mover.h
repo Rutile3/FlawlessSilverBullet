@@ -12,11 +12,11 @@ class cMover {
 public:
 	cMover();
 	cMover(const cMover& mover);
-	cMover(float x, float y, float z, float r, float angle, float speed);
+	cMover(float x, float y, float z, float r, float angle, float speed, int score = 100, int hp = 12);
 	~cMover();
 
 	float angle, speed, id, r, x, y, z;
-	int hp;
+	int hp, score;
 
 	virtual void Calc();
 	virtual void Draw();

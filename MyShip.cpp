@@ -5,11 +5,10 @@ int energy;
 const int energy_max = 800;//800‚ª‘z’è’l
 
 myShip::myShip() {}
-myShip::myShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+myShip::myShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed, 0, 6) {
 	energy = energy_max;
 	invincible_count = 0;
 	shot_count = 0;
-	hp = 6;
 }
 myShip::~myShip(){}
 void myShip::Calc(){
@@ -126,9 +125,11 @@ myBullet::myBullet() {}
 myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	float x = my_ship->x - mover.x;
 	float y = my_ship->y - mover.y;
-	angle = atan2(y,x)+PI;
+	angle = atan2(y,x)+PI;//OR”½ŽË
+	speed = mover.speed*1.5f;
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
+	hp    = mover.hp*1.5f;
 }
 myBullet::myBullet(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
 	if		(energy >= energy_max / 3)	this->r = 16;//Žb’è“I‚È‘å‚«‚³
