@@ -1,7 +1,7 @@
 #include "enemyShip.h"
 
 enemyShip::enemyShip() {}
-enemyShip::enemyShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+enemyShip::enemyShip(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
 }
 enemyShip::~enemyShip() {}
 void enemyShip::Hit(cMover* mover) {

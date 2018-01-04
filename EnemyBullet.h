@@ -1,12 +1,8 @@
 #ifndef _ENEMY__BULLET_
 #define _ENEMY__BULLET_
 
-#include <assert.h>//不使用
 #include <DxLib.h>
 #include <vector>
-
-#include "GameKeyManager.h"
-#include "RutileMath.h"
 
 #include "Mover.h"
 
@@ -16,7 +12,7 @@ using namespace std;
 class directionalBullet :public cMover {
 public:
 	directionalBullet();
-	directionalBullet(float x, float y, float z, float r, float angle, float speed);//角度いらんかも
+	directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_BULLET010);//角度いらんかも
 	~directionalBullet();
 
 	void Hit(cMover* mover);

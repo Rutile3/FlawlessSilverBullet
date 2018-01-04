@@ -15,7 +15,7 @@ using namespace std;
 class myShield :public cMover {
 public:
 	myShield();
-	myShield(float x, float y, float z, float r, float angle, float speed);
+	myShield(float x, float y, float z, float r, float angle, float speed, int image_name = MY_SHIP_0);
 	~myShield();
 
 	const int max_r = 32;
@@ -29,7 +29,7 @@ public:
 class myShip :public cMover {
 public:
 	myShip();
-	myShip(float x, float y, float z, float r, float angle, float speed);
+	myShip(float x, float y, float z, float r, float angle, float speed, int image_name = MY_SHIP_0);
 	~myShip();
 
 	int shot_count;
@@ -48,10 +48,9 @@ class myBullet :public cMover {
 public:
 	myBullet();
 	myBullet(const cMover& mover);
-	myBullet(float x, float y, float z, float r, float angle, float speed);
+	myBullet(float x, float y, float z, float r, float angle, float speed, int image_name = MY_BULLET000);
 	~myBullet();
 
-	void Draw();
 	void Hit(cMover* mover);
 };
 

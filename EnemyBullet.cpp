@@ -2,7 +2,7 @@
 
 //ТeОн
 directionalBullet::directionalBullet() {}
-directionalBullet::directionalBullet(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {}
+directionalBullet::directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {}
 directionalBullet::~directionalBullet() {}
 void directionalBullet::Hit(cMover* mover) {
 	float r = this->r + mover->r;//РаЦЊХѕРФ

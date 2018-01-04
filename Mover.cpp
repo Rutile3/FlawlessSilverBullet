@@ -6,14 +6,15 @@ cMover::cMover(const cMover& mover) {
 	y = mover.y;
 	z = mover.z;
 	r = mover.r;
-	hp = mover.r;//テスト用
-	score = mover.score;
 	angle = mover.angle;
 	speed = mover.speed;
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
+	hp = mover.hp;
+	image_name = mover.image_name;
+	score = mover.score;
 }
-cMover::cMover(float x, float y, float z, float r, float angle, float speed, int score, int hp) {
+cMover::cMover(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -23,6 +24,7 @@ cMover::cMover(float x, float y, float z, float r, float angle, float speed, int
 	this->add_x = speed*cos(angle);
 	this->add_y = speed*sin(angle);
 	this->hp = hp;
+	this->image_name = image_name;
 	this->score = score;
 }
 cMover::~cMover() {}
@@ -31,8 +33,9 @@ void cMover::Calc() {
 	y += add_y;
 }
 void cMover::Draw() {
-	DrawPixel(x, y, GetColor(z, z, z));
-	DrawCircle(x, y, r, GetColor(z, z, z), z == 200 ? TRUE : FALSE);
+	image->Draw(x, y, z, angle, image_name);
+	//DrawPixel(x, y, GetColor(z, z, z));
+	DrawCircle(x, y, r, GetColor(z, z, z)/*, z == 200 ? TRUE : FALSE*/);//当たり判定の視覚化
 }
 bool cMover::OutSide() {
 	//return ... でできそう

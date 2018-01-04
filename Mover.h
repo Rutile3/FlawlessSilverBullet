@@ -6,17 +6,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "GameImageManager.h"
 #include "RutileMath.h"
 
 class cMover {
 public:
 	cMover();
 	cMover(const cMover& mover);
-	cMover(float x, float y, float z, float r, float angle, float speed, int score = 100, int hp = 12);
+	cMover(float x, float y, float z, float r, float angle, float speed, int image, int score = 100, int hp = 12);
 	~cMover();
 
 	float angle, speed, id, r, x, y, z;
-	int hp, score;
+	int hp, image_name, score;
 
 	virtual void Calc();
 	virtual void Draw();
@@ -29,5 +30,7 @@ protected:
 private:
 
 };
+
+extern imagesManager* image;
 
 #endif
