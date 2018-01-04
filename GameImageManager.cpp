@@ -9,15 +9,15 @@ imagesManager::imagesManager() {
 
 	image[ENEMY_SHIP010] = new imageManager("media/Enemy010.png", 1.5f);
 
-	image[ENEMY_BULLET01] = new imageManager("media/Bullet01.png");
-	image[ENEMY_BULLET02] = new imageManager("media/Bullet02.png");
-	image[ENEMY_BULLET03] = new imageManager("media/Bullet03.png");
-	image[ENEMY_BULLET04] = new imageManager("media/Bullet04.png");
-	image[ENEMY_BULLET05] = new imageManager("media/Bullet05.png");
-	image[ENEMY_BULLET06] = new imageManager("media/Bullet06.png");
-	image[ENEMY_BULLET07] = new imageManager("media/Bullet07.png");
-	image[ENEMY_BULLET08] = new imageManager("media/Bullet08.png");
-	image[ENEMY_BULLET09] = new imageManager("media/Bullet09.png");
+	image[ENEMY_BULLET01] = new imageManager("media/Bullet01.png", 2);
+	image[ENEMY_BULLET02] = new imageManager("media/Bullet02.png", 2);
+	image[ENEMY_BULLET03] = new imageManager("media/Bullet03.png", 2);
+	image[ENEMY_BULLET04] = new imageManager("media/Bullet04.png", 1.7f);
+	image[ENEMY_BULLET05] = new imageManager("media/Bullet05.png", 1.7f);
+	image[ENEMY_BULLET06] = new imageManager("media/Bullet06.png", 1.7f);
+	image[ENEMY_BULLET07] = new imageManager("media/Bullet07.png", 1.14f);
+	image[ENEMY_BULLET08] = new imageManager("media/Bullet08.png", 1.14f);
+	image[ENEMY_BULLET09] = new imageManager("media/Bullet09.png", 1.14f);
 }
 
 imagesManager::~imagesManager() {

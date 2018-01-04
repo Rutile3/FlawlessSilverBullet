@@ -38,7 +38,7 @@ void xLV::Shot() {
 	float tmp = abs(tmp_x - tmp_y);//ê‡ñæïœêî
 
 	if (count == 0 && (tmp < 5)) {//ëÂëÃ45ÅãÇ≈1âÒåÇÇ¬
-		enemy_bullet.push_back(new directionalBullet(x, y, 200, 8, atan2(my_ship->y - y, my_ship->x - x), 5));
+		enemy_bullet.push_back(new directionalBullet(x, y, 200, 12, atan2(my_ship->y - y, my_ship->x - x), 5, ENEMY_BULLET04));
 		count++;
 	}
 }
@@ -61,7 +61,8 @@ void inFront::Shot() {
 	if (count == 60) {
 		for (int i = 1; i <= 4; i++) {
 			float tmp_speed = 3 + i * 0.5f;
-			enemy_bullet.push_back(new directionalBullet(x, y, 200, 12, angle, tmp_speed));
+			enemy_bullet.push_back(new directionalBullet(x - 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET08));
+			enemy_bullet.push_back(new directionalBullet(x + 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET08));
 		}
 	}
 }
@@ -84,7 +85,8 @@ void slalomFront::Shot() {
 	if (count == 60) {
 		for (int i = 1; i <= 4; i++) {
 			float tmp_speed = 3 + i * 0.5f;
-			enemy_bullet.push_back(new directionalBullet(x, y, 200, 12, angle, tmp_speed));
+			enemy_bullet.push_back(new directionalBullet(x - 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET07));
+			enemy_bullet.push_back(new directionalBullet(x + 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET07));
 		}
 	}
 }
