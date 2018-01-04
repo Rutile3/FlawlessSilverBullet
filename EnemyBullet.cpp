@@ -2,8 +2,15 @@
 
 //’eŽí
 directionalBullet::directionalBullet() {}
-directionalBullet::directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {}
+directionalBullet::directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
+	count = 0;
+}
 directionalBullet::~directionalBullet() {}
+void directionalBullet::Draw() {
+	image->Draw(x, y, z, angle + count*PI/60, image_name);
+	count++;
+	DrawCircle(x, y, r, GetColor(z, z, z), TRUE/*, z == 200 ? TRUE : FALSE*/);//“–‚½‚è”»’è‚ÌŽ‹Šo‰»
+}
 void directionalBullet::Hit(cMover* mover) {
 	float r = this->r + mover->r;//à–¾•Ï”
 	float x = this->x - mover->x;

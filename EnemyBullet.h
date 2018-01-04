@@ -12,10 +12,14 @@ using namespace std;
 class directionalBullet :public cMover {
 public:
 	directionalBullet();
-	directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_BULLET010);//Šp“x‚¢‚ç‚ñ‚©‚à
+	directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_BULLET01);//Šp“x‚¢‚ç‚ñ‚©‚à
 	~directionalBullet();
 
+	void Draw();
 	void Hit(cMover* mover);
+
+private:
+	int count;
 };
 
 //‰QŠª’e
