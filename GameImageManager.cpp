@@ -4,8 +4,10 @@ imagesManager::imagesManager() {
 	image[MY_SHIP_0] = new imageManager("media/MyShip0.png");
 
 	image[MY_BULLET000] = new imageManager("media/MyBullet000.png");
+	image[MY_BULLET001] = new imageManager("media/MyBullet001.png");
+	image[MY_BULLET002] = new imageManager("media/MyBullet002.png");
 
-	image[ENEMY_SHIP010] = new imageManager("media/Enemy010.png", 2);
+	image[ENEMY_SHIP010] = new imageManager("media/Enemy010.png", 1.5f);
 
 	image[ENEMY_BULLET010] = new imageManager("media/Bullet010.png");
 	image[ENEMY_BULLET011] = new imageManager("media/Bullet011.png");
