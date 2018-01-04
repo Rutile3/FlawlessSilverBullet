@@ -102,8 +102,8 @@ void cutInLeft::Calc() {
 }
 void cutInLeft::Move() {
 	if (fit_x) {
-		if (count < 4) {
-			angle += PI / 16;
+		if (count < 16) {
+			angle += PI / 64;
 			count++;
 		}
 	}
@@ -125,8 +125,8 @@ void cutInRight::Calc() {
 }
 void cutInRight::Move() {
 	if (fit_x) {
-		if (count < 4) {
-			angle -= PI / 16;
+		if (count < 16) {
+			angle -= PI / 64;
 			count++;
 		}
 	}
@@ -137,6 +137,41 @@ void cutInRight::Move() {
 	y += speed*sin(angle);
 }
 
+cutInUp::cutInUp() {}
+cutInUp::cutInUp(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
+	count = 0;
+}
+cutInUp::~cutInUp() {}
+void cutInUp::Calc() {
+	Move();
+}
+void cutInUp::Move() {
+	if (z != 200 && y < -20)
+		z++;
+	else if (z == 200 && angle != PI / 2)
+		angle = PI / 2;
+
+	x += speed*cos(angle);
+	y += speed*sin(angle);
+}
+
+cutInDown::cutInDown() {}
+cutInDown::cutInDown(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
+	count = 0;
+}
+cutInDown::~cutInDown() {}
+void cutInDown::Calc() {
+	Move();
+}
+void cutInDown::Move() {
+	if (z != 200 && y < -20)
+		z--;
+	else if (z == 200 && angle != PI / 2)
+		angle = PI / 2;
+
+	x += speed*cos(angle);
+	y += speed*sin(angle);
+}
 
 //ƒeƒXƒg
 testSpiralShotPattern::testSpiralShotPattern() {}
