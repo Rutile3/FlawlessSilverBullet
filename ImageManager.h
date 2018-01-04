@@ -2,7 +2,6 @@
 #define _IMAGE_MANAGER_
 
 #include <DxLib.h>
-#include <vector>
 
 class imageManager {
 public:
