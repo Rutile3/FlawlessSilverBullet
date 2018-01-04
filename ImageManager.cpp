@@ -9,5 +9,5 @@ imageManager::~imageManager() {
 }
 
 void imageManager::Draw(const int x, const int y, const float expansion_rate, const float angle) {
-	DrawRotaGraph(x,y,expansion_rate,angle,image_handle,TRUE,FALSE);
+	DrawRotaGraph(x, y, expansion_rate, angle, image_handle, TRUE, FALSE);
 }
