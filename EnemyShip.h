@@ -103,6 +103,38 @@ private:
 	void Shot();
 };
 
+//上からくるやつ※z=100以外で呼び出さない！！
+class cutInUp :public enemyShip {
+public:
+	cutInUp();
+	cutInUp(float x, float y, float z, float r, float angle, float speed);
+	~cutInUp();
+
+	void Calc();
+
+private:
+	int count;
+
+	void Move();
+	void Shot();
+};
+
+//下からくるやつ※z=300以外で呼び出さない！！
+class cutInDown :public enemyShip {
+public:
+	cutInDown();
+	cutInDown(float x, float y, float z, float r, float angle, float speed);
+	~cutInDown();
+
+	void Calc();
+
+private:
+	int count;
+
+	void Move();
+	void Shot();
+};
+
 
 //テスト
 class testSpiralShotPattern :public enemyShip {

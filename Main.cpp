@@ -106,7 +106,7 @@ bool ReadEnemyPattern() {
 	char buf[50];
 
 	enemy_pattern.clear();
-	if ((fp = fopen("enemy_pattern.csv", "r")) == NULL)	return false;
+	if ((fp = fopen("enemy_pattern1.csv", "r")) == NULL)	return false;
 	if (fscanf(fp, "%s\n", buf) == EOF)					return false;
 	while (true) {
 		if (fscanf(fp, "%[,]", buf) == EOF)										break;
@@ -206,6 +206,8 @@ void CreateEnemy() {
 			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, PI / 2, 3)); break;
 			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, PI / 4, 3)); break;
 			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4*3, 3)); break;
+			case 3005:enemy_ship.push_back(new cutInUp(		x, 500, 100, 16, PI / 2*3, 3)); break;
+			case 3006:enemy_ship.push_back(new cutInDown(	x, 500, 300, 16, PI / 2*3, 3)); break;
 			default:
 				assert(false);
 				break; 
