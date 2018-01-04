@@ -26,7 +26,7 @@ private:
 class spiralShotPattern {
 public:
 	spiralShotPattern();
-	spiralShotPattern(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval);
+	spiralShotPattern(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int image_name = ENEMY_BULLET01);
 	~spiralShotPattern();
 
 	void Calc();
@@ -46,7 +46,7 @@ private:
 class multiSpiralShotPatten {
 public:
 	multiSpiralShotPatten();
-	multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int  way);
+	multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int way, int image_name = ENEMY_BULLET01);
 	~multiSpiralShotPatten();
 
 	void Calc();
@@ -58,7 +58,7 @@ private:
 class bothSpiralShotPatten {
 public:
 	bothSpiralShotPatten();
-	bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, int interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, int interval_2, int way_2);
+	bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, int interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, int interval_2, int way_2, int image_name = ENEMY_BULLET01);
 	~bothSpiralShotPatten();
 
 	void Calc();
@@ -68,10 +68,10 @@ private:
 };
 
 //NWay’e
-void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots);
+void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots, int image_name = ENEMY_BULLET01);
 
 //N‰~Œ`’e
-void NCircle(float x, float y, float z, float r, float angle, float speed, float shots);
+void NCircle(float x, float y, float z, float r, float angle, float speed, float shots, int image_name = ENEMY_BULLET01);
 
 extern vector<cMover*> enemy_bullet;
 

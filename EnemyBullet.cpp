@@ -24,7 +24,7 @@ void directionalBullet::Hit(cMover* mover) {
 
 
 //’e–‹(ŠÖ”)
-void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots) {
+void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots, int image_name) {
 	if (shots == 1) {
 		enemy_bullet.push_back(new directionalBullet(x, y, z, r, angle, speed));
 	}
@@ -36,13 +36,13 @@ void NWay(float x, float y, float z, float r, float angle, float angle_renge, fl
 	}
 }
 
-void NCircle(float x, float y, float z, float r, float angle, float speed, float shots) {
+void NCircle(float x, float y, float z, float r, float angle, float speed, float shots, int image_name) {
 	NWay(x, y, z, r, angle, 2 * PI, speed, shots - 1);
 }
 
 //’e–‹(ƒNƒ‰ƒX)
 spiralShotPattern::spiralShotPattern() {}
-spiralShotPattern::spiralShotPattern(float* x, float* y,float* z, float r, float angle, float angle_rate, float speed, int interval) {
+spiralShotPattern::spiralShotPattern(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int image_name) {
 	this->x = x;
 	this->y = y;
 	this->z = z;
@@ -63,7 +63,7 @@ void spiralShotPattern::Calc() {
 }
 
 multiSpiralShotPatten::multiSpiralShotPatten() {}
-multiSpiralShotPatten::multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int  way) {
+multiSpiralShotPatten::multiSpiralShotPatten(float* x, float* y, float* z, float r, float angle, float angle_rate, float speed, int interval, int  way, int image_name) {
 	if (way < 0) {
 		way *= -1;
 		angle += PI;
@@ -82,7 +82,7 @@ void multiSpiralShotPatten::Calc() {
 }
 
 bothSpiralShotPatten::bothSpiralShotPatten() {}
-bothSpiralShotPatten::bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, int interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, int interval_2, int way_2) {
+bothSpiralShotPatten::bothSpiralShotPatten(float* x, float* y, float* z, float r, float angle_1, float angle_rate_1, float speed_1, int interval_1, int way_1, float angle_2, float angle_rate_2, float speed_2, int interval_2, int way_2, int image_name) {
 	multi_spiral_shot_patten[0] = new multiSpiralShotPatten(x, y, z, r, angle_1, angle_rate_1, speed_1, interval_1, way_1);
 	multi_spiral_shot_patten[1] = new multiSpiralShotPatten(x, y, z, r, angle_2, angle_rate_2, speed_2, interval_2, way_2);
 }
