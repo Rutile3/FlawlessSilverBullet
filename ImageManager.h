@@ -11,7 +11,7 @@ public:
 	void Draw(const int x, const int y, const float expansion_rate, const float angle);
 
 private:
-	int expansion_rate;
+	float expansion_rate;
 	int image_handle;
 };
 

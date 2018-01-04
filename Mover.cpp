@@ -35,7 +35,7 @@ void cMover::Calc() {
 void cMover::Draw() {
 	image->Draw(x, y, z, angle, image_name);
 	//DrawPixel(x, y, GetColor(z, z, z));
-	DrawCircle(x, y, r, GetColor(z, z, z)/*, z == 200 ? TRUE : FALSE*/);//“–‚½‚è”»’è‚ÌŽ‹Šo‰»
+	DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//“–‚½‚è”»’è‚ÌŽ‹Šo‰»
 }
 bool cMover::OutSide() {
 	//return ... ‚Å‚Å‚«‚»‚¤

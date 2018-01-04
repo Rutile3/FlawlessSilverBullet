@@ -133,10 +133,18 @@ myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	score = mover.score;
 }
 myBullet::myBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
-	if		(energy >= energy_max / 3)	this->r = 16;//Žb’è“I‚È‘å‚«‚³
-	else if (energy >= energy_max / 4)	this->r = 12;
-	else if (energy >= energy_max / 5)	this->r = 8;
-	else								this->r = 4;
+	if (energy >= energy_max / 3) {
+		this->r = 16;//Žb’è“I‚È‘å‚«‚³
+		this->image_name = MY_BULLET000;
+	}
+	else if (energy >= energy_max / 4) {
+		this->r = 12;
+		this->image_name = MY_BULLET001;
+	}
+	else {
+		this->r = 8;
+		this->image_name = MY_BULLET002;
+	}
 	hp = this->r;
 }
 myBullet::~myBullet(){}
