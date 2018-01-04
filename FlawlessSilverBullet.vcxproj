@@ -89,6 +89,7 @@
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="FpsManager.cpp" />
     <ClCompile Include="GameKeyManager.cpp" />
+    <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mover.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="FpsManager.h" />
     <ClInclude Include="GameKeyManager.h" />
+    <ClInclude Include="ImageManager.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="Mover.h" />
