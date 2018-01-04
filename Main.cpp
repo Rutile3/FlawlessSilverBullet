@@ -32,10 +32,9 @@ vector<enemyPattern*> enemy_pattern;
 
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	if (InitDxLibrary() == false) return -1;
-	main_count = 0;
-	fps = new fpsManager(60);
-	key = new cKey();
 	InitGame();
+
+	//‚»‚Ì‚¤‚¿ˆÚ‚·
 	if (ReadEnemyPattern() == false)
 		return -1;
 
@@ -100,6 +99,7 @@ void Calc() {
 		enemy_bullet[i]->Calc();
 }
 
+//ˆø”‚Å–Ê‚ðŽw’è‚Å‚«‚é‚æ‚¤‚É‚·‚éB
 bool ReadEnemyPattern() {
 	FILE *fp;
 	int count, number, x, y, z;
@@ -219,7 +219,13 @@ void CreateEnemy() {
 
 void InitGame() {
 	game_mode = GAME_MAIN;
-	my_ship = new myShip(320, 400, 200, 12, 0, 5);
+	main_count = 0;
+
+	fps = new fpsManager(60);
+	image = new imagesManager();
+	key = new cKey();
+
+	my_ship = new myShip(320, 400, 200, 8, 0, 5);
 	my_shield = new myShield(my_ship->x, my_ship->y, my_ship->z, 0, 0, 0);
 }
 

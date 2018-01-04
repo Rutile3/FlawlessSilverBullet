@@ -4,21 +4,27 @@
 #include "ImageManager.h"
 
 enum {
-	MY_SHIP_1,
+	MY_SHIP_0,
+	MY_BULLET000,
+	ENEMY_SHIP010,
+	ENEMY_BULLET010,
+	ENEMY_BULLET011,
+	ENEMY_BULLET012,
+	ENEMY_BULLET013,
+	ENEMY_BULLET014,
+	ENEMY_BULLET015,
 	MAX_IMAGES_SIZE
 };
 
-class ImagesManager {
+class imagesManager {
 public:
-	ImagesManager();
-	~ImagesManager();
+	imagesManager();
+	~imagesManager();
 
-	void Draw(const int x, const int y, const float expansion_rate, const float angle, const int file_name);
+	void Draw(const int x, const int y, const float z, const float angle, const int file_name);
 
 private:
 	imageManager* image[MAX_IMAGES_SIZE];
 };
-
-
 
 #endif

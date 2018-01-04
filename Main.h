@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "FpsManager.h"
+#include "GameImageManager.h"
 #include "GameKeyManager.h"
 #include "RutileMath.h"
 
@@ -22,8 +23,9 @@ enum GAME_MODE {
 GAME_MODE game_mode;
 
 int main_count;
-fpsManager* fps;
 cKey* key;
+fpsManager* fps;
+imagesManager* image;
 
 vector<cMover*> enemy_bullet;
 vector<cMover*> enemy_ship;

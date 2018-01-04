@@ -5,7 +5,7 @@ int energy;
 const int energy_max = 800;//800が想定値
 
 myShip::myShip() {}
-myShip::myShip(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed, 0, 6) {
+myShip::myShip(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name, 0, 6) {
 	energy = energy_max;
 	invincible_count = 0;
 	shot_count = 0;
@@ -25,13 +25,14 @@ void myShip::Calc(){
 	else if (energy < 0)				energy = 0;
 }
 void myShip::Draw() {
-	DrawPixel(x, y, GetColor(255, 255, 255));
-	DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);
-	DrawCircle(x, y, r * 1.5f, GetColor(255, 255, 255), FALSE);		//画像を張る
+	//DrawPixel(x, y, GetColor(255, 255, 255));
+	DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);			//当たり判定の可視化
 	printfDx("energy = %d\n", energy);								//デバッグ用
 	printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
 	printfDx("score = %d\n", score);								//デバッグ用
 	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
+
+	image->Draw(x, y, z, angle, image_name);
 }
 void myShip::Move() {
 	float naname;
@@ -89,7 +90,7 @@ void myShip::Hit(cMover* mover) {
 }
 
 myShield::myShield() {}
-myShield::myShield(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+myShield::myShield(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
 	free_count = 0;
 }
 myShield::~myShield() {}
@@ -111,10 +112,7 @@ void myShield::Calc() {
 	}
 }
 void myShield::Draw() {
-	//エネルギーが一定以下だとシールドの色が変化
-	DrawPixel(my_ship->x, my_ship->y, GetColor(100, 200, 200));
-	energy >= energy_max / 5 ? GetColor(100, 200, 200) : GetColor(255, 0, 0);//画像の切り替え
-	DrawCircle(my_ship->x, my_ship->y, r,	GetColor(100, 200, 200), FALSE);//画像を張る
+	image->Draw(x, y, max_r/r*z, angle, image_name);
 }
 void myShield::Hit(cMover* mover) {
 	//反射音
@@ -131,8 +129,10 @@ myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
 	hp    = mover.hp*1.5f;
+	image_name = mover.image_name;
+	score = mover.score;
 }
-myBullet::myBullet(float x, float y, float z, float r, float angle, float speed) :cMover(x, y, z, r, angle, speed) {
+myBullet::myBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
 	if		(energy >= energy_max / 3)	this->r = 16;//暫定的な大きさ
 	else if (energy >= energy_max / 4)	this->r = 12;
 	else if (energy >= energy_max / 5)	this->r = 8;
@@ -140,10 +140,6 @@ myBullet::myBullet(float x, float y, float z, float r, float angle, float speed)
 	hp = this->r;
 }
 myBullet::~myBullet(){}
-void myBullet::Draw() {
-	DrawPixel(x, y, GetColor(z, z, z));
-	DrawCircle(x, y, r, GetColor(z, z-100, z-100), TRUE);
-}
 void myBullet::Hit(cMover* mover) {
 	y = 184184;
 	//被弾エフェクト

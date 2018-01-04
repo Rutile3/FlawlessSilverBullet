@@ -17,7 +17,7 @@ using namespace std;
 class enemyShip :public cMover {
 public:
 	enemyShip();
-	enemyShip(float x, float y, float z, float r, float angle, float speed);
+	enemyShip(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_SHIP010);
 	~enemyShip();
 
 	void Hit(cMover* mover);
