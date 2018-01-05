@@ -114,6 +114,7 @@ public:
 
 private:
 	int count;
+	int tmp_speed;
 
 	void Move();
 	void Shot();
@@ -130,6 +131,7 @@ public:
 
 private:
 	int count;
+	int tmp_speed;
 
 	void Move();
 	void Shot();
