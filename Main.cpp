@@ -176,12 +176,6 @@ bool InitDxLibrary() {
 }
 
 void CreateEnemy() {
-	//デバッグ用に敵を量産
-	//if (main_count % 30 == 0)
-	//	enemy_ship.push_back(new testNCircle(main_count % 640, -10, 200, 16, PI / 2, 3));
-	//デバッグ用 個体テスト
-	//if (main_count % 2000 == 0)
-	//	enemy_ship.push_back(new testNWay(320, 200, 200, 16, 3.141592 / 2, 0));
 	while (enemy_pattern.empty() == false) {
 		if (main_count == enemy_pattern[0]->count) {
 			int x = enemy_pattern[0]->x;
@@ -205,9 +199,10 @@ void CreateEnemy() {
 			case 3001:enemy_ship.push_back(new inFront(		x, y, z, 16, PI / 2, 3)); break;
 			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, PI / 2, 3)); break;
 			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, PI / 4, 3)); break;
-			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4*3, 3)); break;
-			case 3005:enemy_ship.push_back(new cutInUp(		x, 500, 100, 16, PI / 2*3, 4)); break;
-			case 3006:enemy_ship.push_back(new cutInDown(	x, 500, 300, 16, PI / 2*3, 4)); break;
+			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4 * 3, 3)); break;
+			case 3005:enemy_ship.push_back(new cutInUp(		x, 500, 100, 16, PI / 2 * 3, 4)); break;
+			case 3006:enemy_ship.push_back(new cutInDown(	x, 500, 300, 16, PI / 2 * 3, 4)); break;
+			case 3007:enemy_ship.push_back(new easyInvaders(x, y, 200, 30, PI / 2 , 6, ENEMY_SHIP020, 2000, 250)); break;
 			default:
 				assert(false);
 				break; 

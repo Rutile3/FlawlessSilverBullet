@@ -9,7 +9,7 @@ directionalBullet::~directionalBullet() {}
 void directionalBullet::Draw() {
 	image->Draw(x, y, z, angle + count*PI/60, image_name);
 	count++;
-	DrawCircle(x, y, r, GetColor(z, z, z), TRUE/*, z == 200 ? TRUE : FALSE*/);//ìñÇΩÇËîªíËÇÃéãäoâª
+	DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//ìñÇΩÇËîªíËÇÃéãäoâª
 }
 void directionalBullet::Hit(cMover* mover) {
 	float r = this->r + mover->r;//ê‡ñæïœêî
@@ -24,6 +24,10 @@ void directionalBullet::Hit(cMover* mover) {
 
 
 //íeñã(ä÷êî)
+void DirectionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name) {
+	enemy_bullet.push_back(new directionalBullet(x, y, z, r, angle, speed, image_name));
+}
+
 void NWay(float x, float y, float z, float r, float angle, float angle_renge, float speed, float shots, int image_name) {
 	if (shots == 1) {
 		enemy_bullet.push_back(new directionalBullet(x, y, z, r, angle, speed));
@@ -31,7 +35,7 @@ void NWay(float x, float y, float z, float r, float angle, float angle_renge, fl
 	else {
 		for (int i = 0; i < shots; i++) {
 			float tmp_angle = angle + angle_renge*(i / (shots - 1) - 0.5f);
-			enemy_bullet.push_back(new directionalBullet(x, y, z, r, tmp_angle, speed));
+			DirectionalBullet(x, y, z, r, tmp_angle, speed, image_name);
 		}
 	}
 }
