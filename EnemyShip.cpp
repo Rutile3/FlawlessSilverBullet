@@ -140,16 +140,22 @@ void cutInRight::Move() {
 cutInUp::cutInUp() {}
 cutInUp::cutInUp(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
+	tmp_speed = speed;
+	this->speed *= 3;
 }
 cutInUp::~cutInUp() {}
 void cutInUp::Calc() {
 	Move();
 }
 void cutInUp::Move() {
-	if (z != 200 && y < -20)
+	if (z != 200 && y < -20) {
 		z++;
-	else if (z == 200 && angle != PI / 2)
+		speed = 0;
+	}
+	else if (z == 200 && angle != PI / 2) {
 		angle = PI / 2;
+		speed = tmp_speed;
+	}
 
 	x += speed*cos(angle);
 	y += speed*sin(angle);
@@ -158,16 +164,21 @@ void cutInUp::Move() {
 cutInDown::cutInDown() {}
 cutInDown::cutInDown(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
 	count = 0;
+	tmp_speed = speed;
 }
 cutInDown::~cutInDown() {}
 void cutInDown::Calc() {
 	Move();
 }
 void cutInDown::Move() {
-	if (z != 200 && y < -20)
+	if (z != 200 && y < -20) {
 		z--;
-	else if (z == 200 && angle != PI / 2)
+		speed = 0;
+	}
+	else if (z == 200 && angle != PI / 2) {
 		angle = PI / 2;
+		speed = tmp_speed;
+	}
 
 	x += speed*cos(angle);
 	y += speed*sin(angle);
