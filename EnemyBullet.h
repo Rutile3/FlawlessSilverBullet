@@ -12,7 +12,7 @@ using namespace std;
 class directionalBullet :public cMover {
 public:
 	directionalBullet();
-	directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_BULLET01);//Šp“x‚¢‚ç‚ñ‚©‚à
+	directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_BULLET01);
 	~directionalBullet();
 
 	void Draw();
@@ -21,6 +21,8 @@ public:
 private:
 	int count;
 };
+//•ûŒü’eŠÖ”
+void DirectionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_BULLET01);
 
 //‰QŠª’e
 class spiralShotPattern {

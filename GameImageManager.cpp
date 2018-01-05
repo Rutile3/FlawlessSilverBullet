@@ -8,6 +8,7 @@ imagesManager::imagesManager() {
 	image[MY_BULLET002] = new imageManager("media/MyBullet002.png");
 
 	image[ENEMY_SHIP010] = new imageManager("media/Enemy010.png", 1.5f);
+	image[ENEMY_SHIP020] = new imageManager("media/Enemy020.png", 1.5f);
 
 	image[ENEMY_BULLET01] = new imageManager("media/Bullet01.png", 2);
 	image[ENEMY_BULLET02] = new imageManager("media/Bullet02.png", 2);
@@ -18,6 +19,8 @@ imagesManager::imagesManager() {
 	image[ENEMY_BULLET07] = new imageManager("media/Bullet07.png", 1.14f);
 	image[ENEMY_BULLET08] = new imageManager("media/Bullet08.png", 1.14f);
 	image[ENEMY_BULLET09] = new imageManager("media/Bullet09.png", 1.14f);
+
+	//読み込みが完全かチェックしたほうがいい
 }
 
 imagesManager::~imagesManager() {

@@ -1,7 +1,7 @@
 #include "enemyShip.h"
 
 enemyShip::enemyShip() {}
-enemyShip::enemyShip(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
+enemyShip::enemyShip(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) :cMover(x, y, z, r, angle, speed, image_name, score, hp) {
 }
 enemyShip::~enemyShip() {}
 void enemyShip::Hit(cMover* mover) {
@@ -182,6 +182,36 @@ void cutInDown::Move() {
 
 	x += speed*cos(angle);
 	y += speed*sin(angle);
+}
+
+easyInvaders::easyInvaders() {}
+easyInvaders::easyInvaders(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) :enemyShip(x, y, z, r, angle, speed, image_name, score, hp) {
+	count = 0;
+}
+easyInvaders::~easyInvaders() {}
+void easyInvaders::Calc() {
+	Move();
+	Shot();
+	count++;
+}
+void easyInvaders::Move() {
+	if (count < 60)			speed -= 0.1f;
+	else if (count == 60)	speed = 0;
+	else if (count > 200)	speed += 0.2;
+
+	x += speed*cos(angle);
+	y += speed*sin(angle);
+}
+void easyInvaders::Shot() {
+	if (count == 60 || count == 90 || count == 120) {
+		for (int i = 1; i <= 4; i++) {
+			float tmp_speed = 3 + i * 0.5f;
+			DirectionalBullet(x - 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET07);
+			DirectionalBullet(x + 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET07);
+		}
+	}
+	else if (count == 150) 
+		NWay(x, y, z, 16, angle, PI / 4, 4, 5, ENEMY_BULLET01);
 }
 
 //ƒeƒXƒg

@@ -17,7 +17,7 @@ using namespace std;
 class enemyShip :public cMover {
 public:
 	enemyShip();
-	enemyShip(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_SHIP010);
+	enemyShip(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_SHIP010, int score = 100, int hp = 10);
 	~enemyShip();
 
 	void Hit(cMover* mover);
@@ -83,7 +83,6 @@ private:
 	bool fit_x;
 
 	void Move();
-	void Shot();
 };
 
 //x軸が合うと直進※45°以外で呼び出さない！！
@@ -100,7 +99,6 @@ private:
 	bool fit_x;
 
 	void Move();
-	void Shot();
 };
 
 //上からくるやつ※z=100以外で呼び出さない！！
@@ -117,7 +115,6 @@ private:
 	int tmp_speed;
 
 	void Move();
-	void Shot();
 };
 
 //下からくるやつ※z=300以外で呼び出さない！！
@@ -132,6 +129,20 @@ public:
 private:
 	int count;
 	int tmp_speed;
+
+	void Move();
+};
+
+class easyInvaders :public enemyShip {
+public:
+	easyInvaders();
+	easyInvaders(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp);
+	~easyInvaders();
+
+	void Calc();
+
+private:
+	int count;
 
 	void Move();
 	void Shot();

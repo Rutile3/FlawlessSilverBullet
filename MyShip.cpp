@@ -128,7 +128,7 @@ myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	speed = mover.speed*1.5f;
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
-	hp    = mover.hp*1.5f;
+	hp = mover.hp * 1.5;
 	image_name = mover.image_name;
 	score = mover.score;
 }
