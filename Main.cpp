@@ -150,6 +150,7 @@ void Draw() {
 	printfDx("es = %d\n", enemy_ship.size());
 	printfDx("eb = %d\n", enemy_bullet.size());
 	printfDx("mb = %d\n", my_bullet.size());
+	printfDx("main_count = %d\n", main_count);
 
 	//敵機->自弾->自機シールド->自機->敵弾
 	for (int i = 0; i < enemy_ship.size(); i++)
@@ -182,6 +183,27 @@ void CreateEnemy() {
 			int y = enemy_pattern[0]->y;
 			int z = enemy_pattern[0]->z;
 			switch (enemy_pattern[0]->number) {
+			//100番台はデバッグコマンド
+			case 100:main_count = 0;	break;
+			case 101:main_count = 1000;	break;
+			case 102:main_count = 2000; break;
+			case 103:main_count = 3000; break;
+			case 104:main_count = 4000; break;
+			case 105:main_count = 5000; break;
+			case 106:main_count = 6000; break;
+			case 107:main_count = 7000; break;
+			case 108:main_count = 8000; break;
+			case 109:main_count = 9000;	break;
+			case 110:main_count = 10000;break;
+			case 111:main_count = 11000;break;
+			case 112:main_count = 12000;break;
+			case 113:main_count = 13000;break;
+			case 114:main_count = 14000;break;
+			case 115:main_count = 15000;break;
+			case 116:main_count = 16000;break;
+			case 117:main_count = 17000;break;
+			case 118:main_count = 18000;break;
+			case 119:main_count = 19000;break;
 			//1000番台はデバッグ用固定
 			case 1000:enemy_ship.push_back(new testSpiralShotPattern(		x, y, z, 16, PI / 2, 0)); break;
 			case 1001:enemy_ship.push_back(new testMultiSpiralShotPatten(	x, y, z, 16, PI / 2, 0)); break;
@@ -198,8 +220,8 @@ void CreateEnemy() {
 			case 3000:enemy_ship.push_back(new xLV(			x, y, z, 16, PI / 2, 3)); break;
 			case 3001:enemy_ship.push_back(new inFront(		x, y, z, 16, PI / 2, 3)); break;
 			case 3002:enemy_ship.push_back(new slalomFront(	x, y, z, 16, PI / 2, 3)); break;
-			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, PI / 4, 3)); break;
-			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4 * 3, 3)); break;
+			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, z, 16, PI / 4, 4)); break;
+			case 3004:enemy_ship.push_back(new cutInRight(	x, y, z, 16, PI / 4 * 3, 4)); break;
 			case 3005:enemy_ship.push_back(new cutInUp(		x, 500, 100, 16, PI / 2 * 3, 4)); break;
 			case 3006:enemy_ship.push_back(new cutInDown(	x, 500, 300, 16, PI / 2 * 3, 4)); break;
 			case 3007:enemy_ship.push_back(new easyInvaders(x, y, 200, 30, PI / 2 , 6, ENEMY_SHIP020, 2000, 250)); break;
@@ -207,6 +229,9 @@ void CreateEnemy() {
 				assert(false);
 				break; 
 			}
+			enemy_pattern.erase(enemy_pattern.begin());
+		}
+		else if (main_count > enemy_pattern[0]->count) {
 			enemy_pattern.erase(enemy_pattern.begin());
 		}
 		else
