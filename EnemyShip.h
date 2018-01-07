@@ -43,7 +43,7 @@ private:
 class inFront :public enemyShip {
 public:
 	inFront();
-	inFront(float x, float y, float z, float r, float angle, float speed);
+	inFront(float x, float y, float z, float r, float angle, float speed, int image_name, int score = 100, int hp = 10);
 	~inFront();
 
 	void Calc();
@@ -58,7 +58,7 @@ private:
 class slalomFront :public enemyShip {
 public:
 	slalomFront();
-	slalomFront(float x, float y, float z, float r, float angle, float speed);
+	slalomFront(float x, float y, float z, float r, float angle, float speed, int image_name, int score = 100, int hp = 10);
 	~slalomFront();
 
 	void Calc();

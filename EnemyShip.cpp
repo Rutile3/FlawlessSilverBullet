@@ -44,7 +44,7 @@ void xLV::Shot() {
 }
 
 inFront::inFront() {}
-inFront::inFront(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
+inFront::inFront(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) :enemyShip(x, y, z, r, angle, speed, image_name, score, hp) {
 	count = 0;
 }
 inFront::~inFront() {}
@@ -60,7 +60,7 @@ void inFront::Move() {
 void inFront::Shot() {
 	if (count == 60) {
 		for (int i = 1; i <= 4; i++) {
-			float tmp_speed = 3 + i * 0.5f;
+			float tmp_speed = 4 + i * 0.5f;
 			enemy_bullet.push_back(new directionalBullet(x - 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET08));
 			enemy_bullet.push_back(new directionalBullet(x + 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET08));
 		}
@@ -68,7 +68,7 @@ void inFront::Shot() {
 }
 
 slalomFront::slalomFront() {}
-slalomFront::slalomFront(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
+slalomFront::slalomFront(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) :enemyShip(x, y, z, r, angle, speed, image_name, score, hp) {
 	count = 0;
 }
 slalomFront::~slalomFront() {}
@@ -84,7 +84,7 @@ void slalomFront::Move() {
 void slalomFront::Shot() {
 	if (count == 60) {
 		for (int i = 1; i <= 4; i++) {
-			float tmp_speed = 3 + i * 0.5f;
+			float tmp_speed = 4 + i * 0.5f;
 			enemy_bullet.push_back(new directionalBullet(x - 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET07));
 			enemy_bullet.push_back(new directionalBullet(x + 4, y, 200, 8, angle, tmp_speed, ENEMY_BULLET07));
 		}
@@ -107,7 +107,7 @@ void cutInLeft::Move() {
 			count++;
 		}
 	}
-	else if (abs(x - my_ship->x) < 5)
+	else if (abs(x - my_ship->x) < 26)
 		fit_x = true;
 
 	x += speed*cos(angle);
@@ -130,7 +130,7 @@ void cutInRight::Move() {
 			count++;
 		}
 	}
-	else if (abs(x - my_ship->x) < 5)
+	else if (abs(x - my_ship->x) < 26)
 		fit_x = true;
 
 	x += speed*cos(angle);
@@ -197,7 +197,7 @@ void easyInvaders::Calc() {
 void easyInvaders::Move() {
 	if (count < 60)			speed -= 0.1f;
 	else if (count == 60)	speed = 0;
-	else if (count > 200)	speed += 0.2;
+	else if (count > 210)	speed += 0.2;
 
 	x += speed*cos(angle);
 	y += speed*sin(angle);
@@ -211,7 +211,7 @@ void easyInvaders::Shot() {
 		}
 	}
 	else if (count == 150) 
-		NWay(x, y, z, 16, angle, PI / 4, 4, 5, ENEMY_BULLET01);
+		NWay(x, y, z, 16, angle, PI / 4, 5, 5, ENEMY_BULLET01);
 }
 
 //ƒeƒXƒg
