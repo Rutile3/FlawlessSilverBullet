@@ -26,8 +26,8 @@ void myShip::Calc(){
 }
 void myShip::Draw() {
 	//DrawPixel(x, y, GetColor(255, 255, 255));
-	DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);			//当たり判定の可視化
-	printfDx("energy = %d\n", energy);								//デバッグ用
+	//DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);			//当たり判定の可視化
+	//printfDx("energy = %d\n", energy);								//デバッグ用
 	printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
 	printfDx("score = %d\n", score);								//デバッグ用
 	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
@@ -116,6 +116,7 @@ void myShield::Draw() {
 }
 void myShield::Hit(cMover* mover) {
 	//反射音
+	if (mover->image_name == ENEMY_BULLET01 || mover->image_name == ENEMY_BULLET04 || mover->image_name == ENEMY_BULLET07)
 	my_bullet.push_back(new myBullet(*mover));
 }
 
@@ -129,7 +130,12 @@ myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	add_x = speed*cos(angle);
 	add_y = speed*sin(angle);
 	hp = mover.hp * 1.5;
-	image_name = mover.image_name;
+	switch (mover.image_name) {
+	case ENEMY_BULLET01:image_name = ENEMY_BULLET03; break;
+	case ENEMY_BULLET04:image_name = ENEMY_BULLET06; break;
+	case ENEMY_BULLET07:image_name = ENEMY_BULLET09; break;
+	default: assert(false); break;//念のため
+	}
 	score = mover.score;
 }
 myBullet::myBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
