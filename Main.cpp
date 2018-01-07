@@ -147,10 +147,10 @@ void OutSideSub(vector<cMover*> &ve) {
 
 void Draw() {
 	//デバッグ用
-	printfDx("es = %d\n", enemy_ship.size());
-	printfDx("eb = %d\n", enemy_bullet.size());
-	printfDx("mb = %d\n", my_bullet.size());
-	printfDx("main_count = %d\n", main_count);
+	//printfDx("es = %d\n", enemy_ship.size());
+	//printfDx("eb = %d\n", enemy_bullet.size());
+	//printfDx("mb = %d\n", my_bullet.size());
+	//printfDx("main_count = %d\n", main_count);
 
 	//敵機->自弾->自機シールド->自機->敵弾
 	for (int i = 0; i < enemy_ship.size(); i++)
@@ -224,7 +224,7 @@ void CreateEnemy() {
 			case 3004:enemy_ship.push_back(new cutInRight(	x, y, 200, 16, PI / 4 * 3, 4)); break;
 			case 3005:enemy_ship.push_back(new cutInUp(		x, 500, 100, 16, PI / 2 * 3, 4)); break;
 			case 3006:enemy_ship.push_back(new cutInDown(	x, 500, 300, 16, PI / 2 * 3, 4)); break;
-			case 3007:enemy_ship.push_back(new easyInvaders(x, y, 200, 30, PI / 2 , 6, ENEMY_SHIP030, 2000, 200)); break;
+			case 3007:enemy_ship.push_back(new easyInvaders(x, y, 200, 30, PI / 2 , 6, ENEMY_SHIP020, 2000, 200)); break;
 			default:
 				assert(false);
 				break; 
