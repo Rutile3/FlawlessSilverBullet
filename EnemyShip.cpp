@@ -214,6 +214,27 @@ void easyInvaders::Shot() {
 		NWay(x, y, z, 16, angle, PI / 4, 5, 5, ENEMY_BULLET01);
 }
 
+hoverShooter::hoverShooter() {}
+hoverShooter::hoverShooter(float x, float y, float z, float r, float angle, float speed, int image_name) :enemyShip(x, y, z, r, angle, speed, image_name) {
+	count = 0;
+}
+hoverShooter::~hoverShooter() {}
+void hoverShooter::Calc() {
+	Move();
+	Shot();
+	count++;
+}
+void hoverShooter::Move() {
+	if (count < 660)y += speed*sin(count*PI / 90);
+	else			y -= speed;
+
+	angle = atan2(my_ship->y - y, my_ship->x - x);
+}
+void hoverShooter::Shot() {
+	if (count % 180== 135)
+		NWay(x, y, z, 8, angle, PI / 64, 4, 5, ENEMY_BULLET07);
+}
+
 //ƒeƒXƒg
 testSpiralShotPattern::testSpiralShotPattern() {}
 testSpiralShotPattern::testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {

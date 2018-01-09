@@ -133,6 +133,7 @@ private:
 	void Move();
 };
 
+
 class easyInvaders :public enemyShip {
 public:
 	easyInvaders();
@@ -148,6 +149,20 @@ private:
 	void Shot();
 };
 
+class hoverShooter :public enemyShip {
+public:
+	hoverShooter();
+	hoverShooter(float x, float y, float z, float r, float angle, float speed, int image_name);
+	~hoverShooter();
+
+	void Calc();
+
+private:
+	int count;
+
+	void Move();
+	void Shot();
+};
 
 //ƒeƒXƒg
 class testSpiralShotPattern :public enemyShip {
