@@ -59,8 +59,6 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	}
 
 	EndGame();
-	delete fps;
-	delete key;
 	DxLib_End();
 
 	return 0;
@@ -72,7 +70,7 @@ void Title() {
 
 	if (key->z->Push() == true) {
 		game_mode = GAME_MAIN;
-		main_count = 0;
+		main_count = -1;//mainÇÃÇŸÇ§Ç≈1â¡éZÇ≥ÇÍÇÈÇÃÇ≈
 	}
 }
 
@@ -106,7 +104,7 @@ bool ReadEnemyPattern() {
 	char buf[50];
 
 	enemy_pattern.clear();
-	if ((fp = fopen("enemy_pattern1.csv", "r")) == NULL)	return false;
+	if ((fp = fopen("enemy_pattern.csv", "r")) == NULL)return false;
 	if (fscanf(fp, "%s\n", buf) == EOF)					return false;
 	while (true) {
 		if (fscanf(fp, "%[,]", buf) == EOF)										break;
@@ -218,13 +216,14 @@ void CreateEnemy() {
 			case 2004:enemy_ship.push_back(new testNCircle(	x, y, z, 16, PI / 2, 3)); break;
 			//3000î‘ë‰ÇÕéGãõìG
 			case 3000:enemy_ship.push_back(new xLV(			x, y, 200, 16, PI / 2, 3)); break;
-			case 3001:enemy_ship.push_back(new inFront(		x, y, 200, 12, PI / 2, 4, ENEMY_SHIP030)); break;
-			case 3002:enemy_ship.push_back(new slalomFront(	x, y, 200, 12, PI / 2, 4, ENEMY_SHIP030)); break;
+			case 3001:enemy_ship.push_back(new inFront(		x, y, 200, 12, PI / 2, 3, ENEMY_SHIP030)); break;
+			case 3002:enemy_ship.push_back(new slalomFront(	x, y, 200, 12, PI / 2, 3, ENEMY_SHIP030)); break;
 			case 3003:enemy_ship.push_back(new cutInLeft(	x, y, 200, 16, PI / 4, 4)); break;
 			case 3004:enemy_ship.push_back(new cutInRight(	x, y, 200, 16, PI / 4 * 3, 4)); break;
 			case 3005:enemy_ship.push_back(new cutInUp(		x, 500, 100, 16, PI / 2 * 3, 4)); break;
 			case 3006:enemy_ship.push_back(new cutInDown(	x, 500, 300, 16, PI / 2 * 3, 4)); break;
-			case 3007:enemy_ship.push_back(new easyInvaders(x, y, 200, 30, PI / 2 , 6, ENEMY_SHIP020, 2000, 200)); break;
+			case 3007:enemy_ship.push_back(new easyInvaders(x, y, 200, 16, PI / 2, 6, ENEMY_SHIP020, 2000, 200)); break;
+			case 3008:enemy_ship.push_back(new hoverShooter(	x, y, 200, 16, PI / 2, 3, ENEMY_SHIP040)); break;
 			default:
 				assert(false);
 				break; 
@@ -240,7 +239,7 @@ void CreateEnemy() {
 }
 
 void InitGame() {
-	game_mode = GAME_MAIN;
+	game_mode = TITLE;
 	main_count = 0;
 
 	fps = new fpsManager(60);
@@ -257,4 +256,7 @@ void EndGame() {
 	my_bullet.clear();
 	delete my_shield;
 	delete my_ship;
+	delete fps;
+	//delete image;//Ç»ÇÒÇ≈Ç©ÉÅÉÇÉäÅ[ÉäÅ[ÉNÇ…é∏îsÇ∑ÇÈÅB
+	delete key;
 }
