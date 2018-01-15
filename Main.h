@@ -22,6 +22,7 @@ enum GAME_MODE {
 };
 GAME_MODE game_mode;
 
+int stage;
 int main_count;
 cKey* key;
 fpsManager* fps;
