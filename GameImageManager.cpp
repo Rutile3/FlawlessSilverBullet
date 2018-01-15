@@ -11,6 +11,7 @@ imagesManager::imagesManager() {
 	image[ENEMY_SHIP020] = new imageManager("media/Enemy020.png", 1.5f);
 	image[ENEMY_SHIP030] = new imageManager("media/Enemy030.png", 1.5f);
 	image[ENEMY_SHIP040] = new imageManager("media/Enemy040.png", 1.5f);
+	image[ENEMY_SHIP050] = new imageManager("media/Enemy050.png", 1.5f);
 
 	image[ENEMY_BULLET01] = new imageManager("media/Bullet01.png", 2);
 	image[ENEMY_BULLET02] = new imageManager("media/Bullet02.png", 2);
