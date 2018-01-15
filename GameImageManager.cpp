@@ -23,7 +23,7 @@ imagesManager::imagesManager() {
 	image[ENEMY_BULLET09] = new imageManager("media/Bullet09.png", 1.14f);
 
 	image[BACK010] = new imageManager("media/Back010.png");
-	image[BACK011] = new imageManager("media/Back010.png");
+	image[BACK011] = new imageManager("media/Back011.png");
 
 	image[EFFECT010] = new imageManager("media/Effect010.png");
 	image[EFFECT011] = new imageManager("media/Effect011.png");

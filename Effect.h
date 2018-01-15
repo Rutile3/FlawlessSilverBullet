@@ -16,6 +16,7 @@ public:
 	~cEffect();
 
 	virtual void Hit(cMover* mover);
+
 };
 
 class cExplosion :public cEffect{
@@ -27,6 +28,15 @@ public:
 	void Draw();
 };
 void Explosion(cMover* mover, bool type);
+
+class backGraung :public cEffect {
+public:
+	backGraung();
+	backGraung(float x, float y, float z, float r, float angle, float speed, int image_name);
+	~backGraung();
+
+	bool OutSide();
+};
 
 extern vector<cMover*> effect;
 
