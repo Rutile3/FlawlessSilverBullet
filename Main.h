@@ -28,6 +28,7 @@ cKey* key;
 fpsManager* fps;
 imagesManager* image;
 
+vector<cMover*> effect;
 vector<cMover*> enemy_bullet;
 vector<cMover*> enemy_ship;
 vector<cMover*> my_bullet;
