@@ -210,6 +210,8 @@ void CreateEffect() {
 			case 118:main_count = 18000; break;
 			case 119:main_count = 19000; break;
 			//1000”Ô‘ä‚Í”wŒi
+			case 1000:effect.push_back(new backGraung(320, 240, 200, 0, PI / 2, 0.1f, BACK010)); break;
+			case 1001:effect.push_back(new backGraung(320, -1740, 200, 0, PI / 2, 10, BACK011)); break;
 			default:
 				assert(false);
 				break;
