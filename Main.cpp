@@ -85,7 +85,7 @@ void GameMain() {
 }
 
 void Calc() {
-	//自機->自機シールド->自弾->敵機->敵弾
+	//自機->自機シールド->自弾->敵機->敵弾->エフェクト
 	my_ship->Calc();
 	my_shield->x = my_ship->x;
 	my_shield->y = my_ship->y;
@@ -97,6 +97,8 @@ void Calc() {
 		enemy_ship[i]->Calc();
 	for (int i = 0; i != enemy_bullet.size(); i++)
 		enemy_bullet[i]->Calc();
+	for (int i = 0; i != effect.size(); i++)
+		effect[i]->Calc();
 }
 
 //引数で面を指定できるようにする。
@@ -136,6 +138,7 @@ void OutSide() {
 	OutSideSub(enemy_bullet);
 	OutSideSub(enemy_ship);
 	OutSideSub(my_bullet);
+	OutSideSub(effect);
 }
 
 void OutSideSub(vector<cMover*> &ve) {
@@ -152,9 +155,11 @@ void Draw() {
 	//printfDx("mb = %d\n", my_bullet.size());
 	//printfDx("main_count = %d\n", main_count);
 
-	//敵機->自弾->自機シールド->自機->敵弾
+	//敵機->エフェクト->自弾->自機シールド->自機->敵弾
 	for (int i = 0; i < enemy_ship.size(); i++)
 		enemy_ship[i]->Draw();//まとめれるけどまとめんでも読めるからこのままにする。
+	for (int i = 0; i < effect.size(); i++)
+		effect[i]->Draw();
 	for (int i = 0; i < my_bullet.size(); i++)
 		my_bullet[i]->Draw();
 	my_shield->Draw();
@@ -205,8 +210,6 @@ void CreateEffect() {
 			case 118:main_count = 18000; break;
 			case 119:main_count = 19000; break;
 			//1000番台は背景
-
-
 			default:
 				assert(false);
 				break;
@@ -303,6 +306,7 @@ void InitGame() {
 void EndGame() {
 	enemy_pattern.clear();
 	effect_pattern.clear();
+	effect.clear();
 	enemy_bullet.clear();
 	enemy_ship.clear();
 	my_bullet.clear();

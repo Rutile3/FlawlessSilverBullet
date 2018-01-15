@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EnemyBullet.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="FpsManager.cpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="RutileMath.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="FpsManager.h" />

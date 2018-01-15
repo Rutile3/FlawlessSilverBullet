@@ -8,6 +8,7 @@
 #include "GameKeyManager.h"
 #include "RutileMath.h"
 
+#include "Effect.h"
 #include "EnemyBullet.h"
 #include "Mover.h"
 #include "MyShip.h"
@@ -236,6 +237,7 @@ private:
 	void Shot();
 };
 
+extern vector<cMover*> effect;
 extern vector<cMover*> enemy_bullet;
 extern vector<cMover*> enemy_ship;
 extern cMover* my_ship;

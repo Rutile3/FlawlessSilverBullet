@@ -12,9 +12,9 @@ void enemyShip::Hit(cMover* mover) {
 		mover->Hit(this);
 		hp -= mover->hp;
 		if (hp <= 0) {
+			Explosion(this, 1);
 			this->x = 184184;//場外に移動させて場外判定で消す
 			my_ship->score += score;
-			//爆破エフェクト
 		}
 	}
 }
