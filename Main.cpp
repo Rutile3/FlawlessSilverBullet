@@ -4,22 +4,9 @@
 
 using namespace std;
 
-void Calc();
-void Collision();
-void CreateEnemy();
-void Draw();
-void EndGame();
-bool ReadEnemyPattern();
-void GameMain();
-void OutSide();
-void OutSideSub(vector<cMover*> &ve);
-bool InitDxLibrary();
-void InitGame();
-void Title();
-
-class enemyPattern {
+class cPattern {
 public:
-	enemyPattern(int count, int number, int x, int y, int z) {
+	cPattern(int count, int number, int x, int y, int z) {
 		this->count = count;
 		this->number = number;
 		this->x = x;
@@ -28,15 +15,26 @@ public:
 	}
 	int count, number, x, y, z;
 };
-vector<enemyPattern*> enemy_pattern;
+vector<cPattern*> enemy_pattern;
+vector<cPattern*> effect_pattern;
+
+void Calc();
+void Collision();
+void CreateEffect();
+void CreateEnemy();
+void Draw();
+void EndGame();
+bool ReadPattern(char* file, vector<cPattern*> &ve);
+void GameMain();
+void OutSide();
+void OutSideSub(vector<cMover*> &ve);
+bool InitDxLibrary();
+void InitGame();
+void Title();
 
 int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 	if (InitDxLibrary() == false) return -1;
 	InitGame();
-
-	//そのうち移す
-	if (ReadEnemyPattern() == false)
-		return -1;
 
 	while (ProcessMessage() != -1) {
 		ClearDrawScreen();
@@ -71,12 +69,16 @@ void Title() {
 	if (key->z->Push() == true) {
 		game_mode = GAME_MAIN;
 		main_count = -1;//mainのほうで1加算されるので
+		stage = 0;
+		ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
+		ReadPattern("media/EffectPattern1.csv", effect_pattern);
 	}
 }
 
 void GameMain() {
 	Calc();
 	CreateEnemy();
+	CreateEffect();
 	Collision();
 	OutSide();
 	Draw();
@@ -98,18 +100,18 @@ void Calc() {
 }
 
 //引数で面を指定できるようにする。
-bool ReadEnemyPattern() {
+bool ReadPattern(char* file, vector<cPattern*> &pattern) {
 	FILE *fp;
 	int count, number, x, y, z;
 	char buf[50];
 
-	enemy_pattern.clear();
-	if ((fp = fopen("enemy_pattern.csv", "r")) == NULL)return false;
+	pattern.clear();
+	if ((fp = fopen(file, "r")) == NULL)return false;
 	if (fscanf(fp, "%s\n", buf) == EOF)					return false;
 	while (true) {
 		if (fscanf(fp, "%[,]", buf) == EOF)										break;
 		if (fscanf(fp, "%d,%d,%d,%d,%d\n", &count, &number, &x, &y, &z) == EOF)	break;
-		enemy_pattern.push_back(new enemyPattern(count, number, x, y, z));
+		pattern.push_back(new cPattern(count, number, x, y, z));
 	}
 	fclose(fp);
 
@@ -172,6 +174,51 @@ bool InitDxLibrary() {
 	if (DxLib_Init() == -1) return false;
 	SetDrawScreen(DX_SCREEN_BACK);
 	return true;
+}
+
+void CreateEffect() {
+	while (effect_pattern.empty() == false) {
+		if (main_count == effect_pattern[0]->count) {
+			int x = effect_pattern[0]->x;
+			int y = effect_pattern[0]->y;
+			int z = effect_pattern[0]->z;
+			switch (effect_pattern[0]->number) {
+				//100番台はデバッグコマンド
+			case 100:main_count = 0;	break;
+			case 101:main_count = 1000;	break;
+			case 102:main_count = 2000; break;
+			case 103:main_count = 3000; break;
+			case 104:main_count = 4000; break;
+			case 105:main_count = 5000; break;
+			case 106:main_count = 6000; break;
+			case 107:main_count = 7000; break;
+			case 108:main_count = 8000; break;
+			case 109:main_count = 9000;	break;
+			case 110:main_count = 10000; break;
+			case 111:main_count = 11000; break;
+			case 112:main_count = 12000; break;
+			case 113:main_count = 13000; break;
+			case 114:main_count = 14000; break;
+			case 115:main_count = 15000; break;
+			case 116:main_count = 16000; break;
+			case 117:main_count = 17000; break;
+			case 118:main_count = 18000; break;
+			case 119:main_count = 19000; break;
+			//1000番台は背景
+
+
+			default:
+				assert(false);
+				break;
+			}
+			effect_pattern.erase(effect_pattern.begin());
+		}
+		else if (main_count > effect_pattern[0]->count) {
+			effect_pattern.erase(effect_pattern.begin());
+		}
+		else
+			break;
+	}
 }
 
 void CreateEnemy() {
@@ -241,6 +288,9 @@ void CreateEnemy() {
 void InitGame() {
 	game_mode = TITLE;
 	main_count = 0;
+	stage = 0;
+	ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
+	ReadPattern("media/EffectPattern1.csv", effect_pattern);
 
 	fps = new fpsManager(60);
 	image = new imagesManager();
@@ -251,6 +301,8 @@ void InitGame() {
 }
 
 void EndGame() {
+	enemy_pattern.clear();
+	effect_pattern.clear();
 	enemy_bullet.clear();
 	enemy_ship.clear();
 	my_bullet.clear();
