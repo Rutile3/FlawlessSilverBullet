@@ -70,7 +70,7 @@ void Title() {
 		game_mode = GAME_MAIN;
 		main_count = -1;//main‚Ì‚Ù‚¤‚Å1‰ÁŽZ‚³‚ê‚é‚Ì‚Å
 		stage = 0;
-		ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
+		ReadPattern("media/EnemyPattern.csv", enemy_pattern);
 		ReadPattern("media/EffectPattern1.csv", effect_pattern);
 	}
 }
@@ -275,7 +275,10 @@ void CreateEnemy() {
 			case 3005:enemy_ship.push_back(new cutInUp(		x, 500, 100, 16, PI / 2 * 3, 4)); break;
 			case 3006:enemy_ship.push_back(new cutInDown(	x, 500, 300, 16, PI / 2 * 3, 4)); break;
 			case 3007:enemy_ship.push_back(new easyInvaders(x, y, 200, 16, PI / 2, 6, ENEMY_SHIP020, 2000, 200)); break;
-			case 3008:enemy_ship.push_back(new hoverShooter(	x, y, 200, 16, PI / 2, 3, ENEMY_SHIP040)); break;
+			case 3008:enemy_ship.push_back(new hoverShooter(x, y, 200, 16, PI / 2, 3, ENEMY_SHIP040)); break;
+				//4000”Ô‘ä‚Íƒ{ƒX
+			case 4005:enemy_ship.push_back(new virtualBug(x, y, 200, 32, PI / 2, 3, ENEMY_SHIP050, 100000, 5000)); break;
+
 			default:
 				assert(false);
 				break; 

@@ -41,7 +41,7 @@ void NWay(float x, float y, float z, float r, float angle, float angle_renge, fl
 }
 
 void NCircle(float x, float y, float z, float r, float angle, float speed, float shots, int image_name) {
-	NWay(x, y, z, r, angle, 2 * PI, speed, shots - 1);
+	NWay(x, y, z, r, angle, 2*PI - 2*PI/shots, speed, shots, image_name);
 }
 
 //’e–‹(ƒNƒ‰ƒX)
