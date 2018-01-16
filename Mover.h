@@ -26,8 +26,6 @@ public:
 
 protected:
 	float add_x, add_y;
-private:
-
 };
 
 extern imagesManager* image;
