@@ -26,7 +26,6 @@ public:
 
 protected:
 	float add_x, add_y;
-	//imageManager
 private:
 
 };
