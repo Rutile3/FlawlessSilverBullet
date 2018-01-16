@@ -8,6 +8,7 @@
 #include "GameKeyManager.h"
 #include "RutileMath.h"
 
+#include "Effect.h"
 #include "Mover.h"
 
 using namespace std;

@@ -23,6 +23,9 @@ void myShip::Calc(){
 	//最大最小値の補正
 	if (energy > energy_max)			energy = energy_max;
 	else if (energy < 0)				energy = 0;
+
+	if (invincible_count >0)
+		invincible_count--;
 }
 void myShip::Draw() {
 	//DrawPixel(x, y, GetColor(255, 255, 255));
@@ -76,17 +79,15 @@ void myShip::Hit(cMover* mover) {
 		invincible_count = 60;
 		hp--;
 		if (hp <= 0) {
-			this->x = 184184;//場外に移動させて場外判定で消す
-			//爆破エフェクト
+			Explosion(this, false);
 			//爆破音
+			this->x = 184184;//場外に移動させて場外判定で消す
 		}
 		else {
-			//被弾エフェクト
+			Explosion(this,true);
 			//被弾音
 		}
 	}
-	else
-		invincible_count--;
 }
 
 myShield::myShield() {}

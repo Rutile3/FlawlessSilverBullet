@@ -34,8 +34,8 @@ void cMover::Calc() {
 }
 void cMover::Draw() {
 	image->Draw(x, y, z, angle, image_name);
-	//DrawPixel(x, y, GetColor(z, z, z));
-	DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//当たり判定の視覚化
+	//DrawPixel(x, y, GetColor(z, z, z));//中央点の描画（デバッグ用）
+	//DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//当たり判定の視覚化
 }
 bool cMover::OutSide() {
 	//return ... でできそう
