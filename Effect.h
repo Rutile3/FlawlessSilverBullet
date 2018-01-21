@@ -29,14 +29,17 @@ public:
 };
 void Explosion(cMover* mover, bool type);
 
-class backGraung :public cEffect {
+class backGround :public cEffect {
 public:
-	backGraung();
-	backGraung(float x, float y, float z, float r, float angle, float speed, int image_name);
-	~backGraung();
+	backGround();
+	backGround(float x, float y, float z, float r, float angle, float speed, int image_name, int repeat_y = 1000);
+	~backGround();
 
 	bool OutSide();
+private:
+	int repeat_y;
 };
+void BackGround(int image_name, int repeat_y);
 
 extern vector<cMover*> effect;
 

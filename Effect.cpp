@@ -29,15 +29,20 @@ void Explosion(cMover* mover, bool type) {
 		effect.push_back(new cExplosion(mover->x, mover->y, mover->z, mover->r, mover->angle, 0, EFFECT030));
 }
 
-backGraung::backGraung() {
+backGround::backGround() {}
+backGround::backGround(float x, float y, float z, float r, float angle, float speed, int image_name, int repeat_y) :cEffect(x, y, z, r, angle, speed, image_name) {
+	this->repeat_y = repeat_y;
 }
-backGraung::backGraung(float x, float y, float z, float r, float angle, float speed, int image_name) :cEffect(x, y, z, r, angle, speed, image_name) {
-}
-backGraung::~backGraung() {
-}
-bool backGraung::OutSide() {
+backGround::~backGround() {}
+bool backGround::OutSide() {
+	if (y >= repeat_y)
+		y *= -1;
 	//return ... ‚Å‚Å‚«‚»‚¤
 	if (z > 500 || z < 50)
 		return true;
 	return false;
+}
+void BackGround(int image_name, int repeat_y) {
+	effect.push_back(new backGround(320, repeat_y * 0.5, 200, 0, PI / 2, 10, image_name, repeat_y));
+	effect.push_back(new backGround(320, repeat_y * -0.5, 200, 0, PI / 2, 10, image_name, repeat_y));
 }
