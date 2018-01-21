@@ -100,7 +100,7 @@ myShield::~myShield() {}
 void myShield::Calc() {
 	//押してる間は効果音を流して放した瞬間に効果音を切る処理
 	//シールドの展開と縮小
-	if (key->x->State() && key->z->State() == false && energy > 0) {
+	if (key->x->State() && energy > 0) {
 		r >= max_r ? r = max_r : r += 8;
 		angle += 0.1f;//実際は回る
 		energy -= 4;//展開してると常に減る
