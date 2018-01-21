@@ -252,14 +252,14 @@ void virtualBug::Move() {
 void virtualBug::Shot() {
 	if (count < 900) {
 		if (count % 6 == 0) {
-			NCircle(x, y+5, z, 8, angle + add_angle, 8, 3, ENEMY_BULLET07);
+			NCircle(x, y+5, z, 8, angle + add_angle, 6, 3, ENEMY_BULLET07);
 			DirectionalBullet(x - 110, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
 			DirectionalBullet(x + 110, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
 			DirectionalBullet(x - 170, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
 			DirectionalBullet(x + 170, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
 		}
 		else if (count % 3 == 0) {
-			NCircle(x, y+5, z, 8, angle + add_angle, 8, 3, ENEMY_BULLET08);
+			NCircle(x, y+5, z, 8, angle + add_angle, 6, 3, ENEMY_BULLET08);
 			DirectionalBullet(x - 150, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
 			DirectionalBullet(x + 150, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
 			DirectionalBullet(x - 130, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);

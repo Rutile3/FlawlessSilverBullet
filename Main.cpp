@@ -155,11 +155,11 @@ void Draw() {
 	//printfDx("mb = %d\n", my_bullet.size());
 	//printfDx("main_count = %d\n", main_count);
 
-	//敵機->エフェクト->自弾->自機シールド->自機->敵弾
-	for (int i = 0; i < enemy_ship.size(); i++)
-		enemy_ship[i]->Draw();//まとめれるけどまとめんでも読めるからこのままにする。
+	//エフェクト->敵機->自弾->自機シールド->自機->敵弾
 	for (int i = 0; i < effect.size(); i++)
 		effect[i]->Draw();
+	for (int i = 0; i < enemy_ship.size(); i++)
+		enemy_ship[i]->Draw();//まとめれるけどまとめんでも読めるからこのままにする。
 	for (int i = 0; i < my_bullet.size(); i++)
 		my_bullet[i]->Draw();
 	my_shield->Draw();
@@ -210,8 +210,8 @@ void CreateEffect() {
 			case 118:main_count = 18000; break;
 			case 119:main_count = 19000; break;
 			//1000番台は背景
-			case 1000:effect.push_back(new backGraung(320, 240, 200, 0, PI / 2, 0.1f, BACK010)); break;
-			case 1001:effect.push_back(new backGraung(320, -1740, 200, 0, PI / 2, 10, BACK011)); break;
+			case 1000:BackGround(BACK010, 960);		break;
+			case 1001:BackGround(BACK011, 3000);	break;
 			default:
 				assert(false);
 				break;
