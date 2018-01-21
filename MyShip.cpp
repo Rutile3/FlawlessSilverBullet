@@ -34,7 +34,9 @@ void myShip::Draw() {
 	printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
 	printfDx("score = %d\n", score);								//デバッグ用
 	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
-
+	if		(key->left->State())image_name = MY_SHIP_1;
+	else if (key->left->State())image_name = MY_SHIP_2;
+	else						image_name = MY_SHIP_0;
 	image->Draw(x, y, z, angle, image_name);
 }
 void myShip::Move() {
