@@ -55,7 +55,7 @@ public:
 	void Hit(cMover* mover);
 };
 
-extern cKey* key;
+extern keysManager* key;
 extern cMover* my_ship;
 extern cMover* my_shield;
 extern vector<cMover*> my_bullet;

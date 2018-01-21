@@ -302,7 +302,7 @@ void InitGame() {
 
 	fps = new fpsManager(60);
 	image = new imagesManager();
-	key = new cKey();
+	key = new keysManager();
 
 	my_ship = new myShip(320, 400, 200, 8, 0, 5);
 	my_shield = new myShield(my_ship->x, my_ship->y, my_ship->z, 0, 0, 0,MY_SHIELD_0);

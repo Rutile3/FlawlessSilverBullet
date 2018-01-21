@@ -24,7 +24,7 @@ GAME_MODE game_mode;
 
 int stage;
 int main_count;
-cKey* key;
+keysManager* key;
 fpsManager* fps;
 imagesManager* image;
 
