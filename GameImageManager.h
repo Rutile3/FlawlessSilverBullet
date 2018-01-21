@@ -4,6 +4,10 @@
 #include "ImageManager.h"
 
 enum {
+	TITLE_1,
+	TITLE_2,
+	TITLE_3,
+
 	MY_SHIP_0,
 	MY_SHIP_1,
 	MY_SHIP_2,

@@ -1,6 +1,10 @@
 #include "GameImageManager.h"
 
 imagesManager::imagesManager() {
+	image[TITLE_1] = new imageManager("media/Title1.png");
+	image[TITLE_2] = new imageManager("media/Title2.png");
+	image[TITLE_3] = new imageManager("media/Title3.png");
+
 	image[MY_SHIP_0] = new imageManager("media/MyShip0.png");
 	image[MY_SHIP_1] = new imageManager("media/MyShip1.png");
 	image[MY_SHIP_2] = new imageManager("media/MyShip2.png");
