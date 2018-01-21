@@ -1,6 +1,6 @@
 #include "GameKeyManager.h"
 
-cKey::cKey(){
+keysManager::keysManager() {
 	int key[9];
 	key[0] = PAD_INPUT_A;
 	key[1] = PAD_INPUT_B;
@@ -23,7 +23,7 @@ cKey::cKey(){
 
 }
 
-cKey::~cKey(){
+keysManager::~keysManager() {
 	delete x;
 	delete z;
 	delete down;
@@ -34,7 +34,7 @@ cKey::~cKey(){
 	delete space;
 }
 
-void cKey::Update(){
+void keysManager::Update() {
 	x->Update();
 	z->Update();
 	down->Update();

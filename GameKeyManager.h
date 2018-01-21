@@ -4,10 +4,10 @@
 #include <DxLib.h>
 #include "KeyManager.h"
 
-class cKey{
+class keysManager {
 public:
-	cKey();
-	~cKey();
+	keysManager();
+	~keysManager();
 
 	void Update();
 
