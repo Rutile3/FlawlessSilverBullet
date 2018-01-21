@@ -70,7 +70,7 @@ void Title() {
 		game_mode = GAME_MAIN;
 		main_count = -1;//main‚Ì‚Ù‚¤‚Å1‰ÁŽZ‚³‚ê‚é‚Ì‚Å
 		stage = 0;
-		ReadPattern("media/EnemyPattern.csv", enemy_pattern);
+		ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
 		ReadPattern("media/EffectPattern1.csv", effect_pattern);
 	}
 }
@@ -304,7 +304,7 @@ void InitGame() {
 	image = new imagesManager();
 	key = new keysManager();
 
-	my_ship = new myShip(320, 400, 200, 8, 0, 5);
+	my_ship = new myShip(320, 400, 200, 8, 0, 6);
 	my_shield = new myShield(my_ship->x, my_ship->y, my_ship->z, 0, 0, 0,MY_SHIELD_0);
 }
 

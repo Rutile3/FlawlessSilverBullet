@@ -2,6 +2,8 @@
 
 imagesManager::imagesManager() {
 	image[MY_SHIP_0] = new imageManager("media/MyShip0.png");
+	image[MY_SHIP_1] = new imageManager("media/MyShip1.png");
+	image[MY_SHIP_2] = new imageManager("media/MyShip2.png");
 
 	image[MY_SHIELD_0] = new imageManager("media/Myshield0.png", 4.57f);
 

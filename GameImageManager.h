@@ -5,6 +5,8 @@
 
 enum {
 	MY_SHIP_0,
+	MY_SHIP_1,
+	MY_SHIP_2,
 	MY_SHIELD_0,
 
 	MY_BULLET000,
