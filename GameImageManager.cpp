@@ -3,6 +3,8 @@
 imagesManager::imagesManager() {
 	image[MY_SHIP_0] = new imageManager("media/MyShip0.png");
 
+	image[MY_SHIELD_0] = new imageManager("media/Myshield0.png", 4.57f);
+
 	image[MY_BULLET000] = new imageManager("media/MyBullet000.png");
 	image[MY_BULLET001] = new imageManager("media/MyBullet001.png");
 	image[MY_BULLET002] = new imageManager("media/MyBullet002.png");
