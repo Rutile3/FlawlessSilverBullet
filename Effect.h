@@ -25,7 +25,7 @@ public:
 	cExplosion::cExplosion(float x, float y, float z, float r, float angle, float speed, int image_name);
 	~cExplosion();
 
-	void Draw();
+	void Draw(int lower_limits = 199, int upper_limits = 200);
 };
 void Explosion(cMover* mover, bool type);
 
@@ -35,11 +35,13 @@ public:
 	backGround(float x, float y, float z, float r, float angle, float speed, int image_name, int repeat_y = 1000);
 	~backGround();
 
+	void Draw(int lower_limits = 199, int upper_limits = 200);
 	bool OutSide();
 private:
 	int repeat_y;
+	float base_z;
 };
-void BackGround(int image_name, int repeat_y);
+void BackGround(int z, int speed, int image_name, int repeat_y);
 
 extern vector<cMover*> effect;
 

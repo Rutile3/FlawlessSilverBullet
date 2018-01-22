@@ -6,10 +6,12 @@ directionalBullet::directionalBullet(float x, float y, float z, float r, float a
 	count = 0;
 }
 directionalBullet::~directionalBullet() {}
-void directionalBullet::Draw() {
-	image->Draw(x, y, z, angle + count*PI/60, image_name);
-	count++;
-	DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//“–‚½‚è”»’è‚Ì‹Šo‰»
+void directionalBullet::Draw(int lower_limits, int upper_limits) {
+	if (lower_limits < z && z <= upper_limits) {
+		image->Draw(x, y, z, angle + count*PI / 60, image_name);
+		count++;
+		DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//“–‚½‚è”»’è‚Ì‹Šo‰»
+	}
 }
 void directionalBullet::Hit(cMover* mover) {
 	float r = this->r + mover->r;//à–¾•Ï”

@@ -32,10 +32,12 @@ void cMover::Calc() {
 	x += add_x;
 	y += add_y;
 }
-void cMover::Draw() {
-	image->Draw(x, y, z, angle, image_name);
-	//DrawPixel(x, y, GetColor(z, z, z));//中央点の描画（デバッグ用）
-	//DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//当たり判定の視覚化
+void cMover::Draw(int lower_limits, int upper_limits) {
+	if (lower_limits < z && z <= upper_limits) {
+		image->Draw(x, y, z, angle, image_name);
+		//DrawPixel(x, y, GetColor(z, z, z));//中央点の描画（デバッグ用）
+		//DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//当たり判定の視覚化
+	}
 }
 bool cMover::OutSide() {
 	//return ... でできそう
