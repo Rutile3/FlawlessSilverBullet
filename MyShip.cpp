@@ -32,9 +32,18 @@ void myShip::Draw(int lower_limits, int upper_limits) {
 		//DrawPixel(x, y, GetColor(255, 255, 255));
 		//DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);			//当たり判定の可視化
 		//printfDx("energy = %d\n", energy);								//デバッグ用
-		printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
+		//printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
+		switch (hp) {
+		case 6:image->Draw(545, 464, 200, 0, LIFE1);
+		case 5:image->Draw(560, 440, 200, 0, LIFE1);
+		case 4:image->Draw(575, 464, 200, 0, LIFE1);
+		case 3:image->Draw(590, 440, 200, 0, LIFE1);
+		case 2:image->Draw(605, 464, 200, 0, LIFE1);
+		case 1:image->Draw(620, 440, 200, 0, LIFE1); break;
+		default:assert(false); break;
+		}
 		printfDx("score = %d\n", score);								//デバッグ用
-		DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
+		DrawBox(0, 624, energy / 2, 640, GetColor(100, 100, 255), TRUE);	//デバッグ用
 		if (key->left->State())image_name = MY_SHIP_1;
 		else if (key->left->State())image_name = MY_SHIP_2;
 		else						image_name = MY_SHIP_0;
