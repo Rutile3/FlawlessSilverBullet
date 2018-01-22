@@ -27,17 +27,19 @@ void myShip::Calc(){
 	if (invincible_count >0)
 		invincible_count--;
 }
-void myShip::Draw() {
-	//DrawPixel(x, y, GetColor(255, 255, 255));
-	//DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);			//当たり判定の可視化
-	//printfDx("energy = %d\n", energy);								//デバッグ用
-	printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
-	printfDx("score = %d\n", score);								//デバッグ用
-	DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
-	if		(key->left->State())image_name = MY_SHIP_1;
-	else if (key->left->State())image_name = MY_SHIP_2;
-	else						image_name = MY_SHIP_0;
-	image->Draw(x, y, z, angle, image_name);
+void myShip::Draw(int lower_limits, int upper_limits) {
+	if (lower_limits < z && z <= upper_limits) {
+		//DrawPixel(x, y, GetColor(255, 255, 255));
+		//DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);			//当たり判定の可視化
+		//printfDx("energy = %d\n", energy);								//デバッグ用
+		printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
+		printfDx("score = %d\n", score);								//デバッグ用
+		DrawBox(0, 0, energy / 2, 16, GetColor(100, 100, 255), TRUE);	//デバッグ用
+		if (key->left->State())image_name = MY_SHIP_1;
+		else if (key->left->State())image_name = MY_SHIP_2;
+		else						image_name = MY_SHIP_0;
+		image->Draw(x, y, z, angle, image_name);
+	}
 }
 void myShip::Move() {
 	float naname;
@@ -114,8 +116,9 @@ void myShield::Calc() {
 		}
 	}
 }
-void myShield::Draw() {
-	image->Draw(x, y, max_r/r*z, angle, image_name);
+void myShield::Draw(int lower_limits, int upper_limits) {
+	if (lower_limits < z && z <= upper_limits) 
+		image->Draw(x, y, max_r/r*z, angle, image_name);
 }
 void myShield::Hit(cMover* mover) {
 	//反射音
@@ -140,8 +143,10 @@ myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	default: assert(false); break;//念のため
 	}
 	score = mover.score;
+	count = 0;
 }
 myBullet::myBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
+	count = 0;
 	if (energy >= energy_max / 3) {
 		this->r = 16;//暫定的な大きさ
 		this->image_name = MY_BULLET000;
@@ -156,7 +161,19 @@ myBullet::myBullet(float x, float y, float z, float r, float angle, float speed,
 	}
 	hp = this->r;
 }
-myBullet::~myBullet(){}
+myBullet::~myBullet() {}
+void myBullet::Draw(int lower_limits, int upper_limits) {
+	if (lower_limits < z && z <= upper_limits) {
+		if (image_name == ENEMY_BULLET03 || image_name == ENEMY_BULLET06 || image_name == ENEMY_BULLET09) {
+			image->Draw(x, y, z, angle + count*PI / 60, image_name);
+			count++;
+		}
+		else
+			image->Draw(x, y, z, angle, image_name);
+		//DrawPixel(x, y, GetColor(z, z, z));//中央点の描画（デバッグ用）
+		//DrawCircle(x, y, r, GetColor(z, z, z), FALSE/*, z == 200 ? TRUE : FALSE*/);//当たり判定の視覚化
+	}
+}
 void myBullet::Hit(cMover* mover) {
 	y = 184184;
 	//被弾エフェクト

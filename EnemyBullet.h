@@ -15,7 +15,7 @@ public:
 	directionalBullet(float x, float y, float z, float r, float angle, float speed, int image_name = ENEMY_BULLET01);
 	~directionalBullet();
 
-	void Draw();
+	void Draw(int lower_limits = 199, int upper_limits = 200);
 	void Hit(cMover* mover);
 
 private:

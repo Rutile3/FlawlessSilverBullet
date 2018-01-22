@@ -23,7 +23,7 @@ public:
 	int free_count;
 
 	void Calc();
-	void Draw();
+	void Draw(int lower_limits = 199, int upper_limits = 200);
 	void Hit(cMover* mover);
 };
 
@@ -36,7 +36,7 @@ public:
 	int shot_count;
 
 	void Calc();
-	void Draw();
+	void Draw(int lower_limits = 199, int upper_limits = 200);
 	void Move();
 	void Shot();
 	void Hit(cMover* mover);
@@ -52,7 +52,11 @@ public:
 	myBullet(float x, float y, float z, float r, float angle, float speed, int image_name = MY_BULLET000);
 	~myBullet();
 
+	void Draw(int lower_limits = 199, int upper_limits = 200);
 	void Hit(cMover* mover);
+
+private:
+	int count;
 };
 
 extern keysManager* key;

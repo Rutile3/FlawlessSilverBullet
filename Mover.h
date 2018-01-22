@@ -20,7 +20,7 @@ public:
 	int hp, image_name, score;
 
 	virtual void Calc();
-	virtual void Draw();
+	virtual void Draw(int lower_limits = 199, int upper_limits = 200);
 	virtual void Hit(cMover* mover) = 0;
 	virtual bool OutSide();
 

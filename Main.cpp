@@ -23,6 +23,7 @@ void Collision();
 void CreateEffect();
 void CreateEnemy();
 void Draw();
+void DrawSub(int lower_limits, int upper_limits);
 void EndGame();
 bool ReadPattern(char* file, vector<cPattern*> &ve);
 void GameMain();
@@ -155,18 +156,24 @@ void Draw() {
 	//printfDx("eb = %d\n", enemy_bullet.size());
 	//printfDx("mb = %d\n", my_bullet.size());
 	//printfDx("main_count = %d\n", main_count);
-
-	//エフェクト->敵機->自弾->自機シールド->自機->敵弾
-	for (int i = 0; i < effect.size(); i++)
-		effect[i]->Draw();
-	for (int i = 0; i < enemy_ship.size(); i++)
-		enemy_ship[i]->Draw();//まとめれるけどまとめんでも読めるからこのままにする。
+	DrawSub(300, 600);
+	DrawSub(200, 300);
 	for (int i = 0; i < my_bullet.size(); i++)
 		my_bullet[i]->Draw();
 	my_shield->Draw();
 	my_ship->Draw();
+	DrawSub(0, 200);
+
+}
+
+void DrawSub(int lower_limits, int upper_limits) {
+	//敵機->エフェクト->自弾->自機シールド->自機->敵弾
+	for (int i = 0; i < enemy_ship.size(); i++)
+		enemy_ship[i]->Draw(lower_limits, upper_limits);//まとめれるけどまとめんでも読めるからこのままにする。
+	for (int i = 0; i < effect.size(); i++)
+		effect[i]->Draw(lower_limits,upper_limits);
 	for (int i = 0; i < enemy_bullet.size(); i++)
-		enemy_bullet[i]->Draw();
+		enemy_bullet[i]->Draw(lower_limits, upper_limits);
 }
 
 bool InitDxLibrary() {
@@ -211,8 +218,8 @@ void CreateEffect() {
 			case 118:main_count = 18000; break;
 			case 119:main_count = 19000; break;
 			//1000番台は背景
-			case 1000:BackGround(BACK010, 960);		break;
-			case 1001:BackGround(BACK011, 3000);	break;
+			case 1000:BackGround(500, 0.1f, BACK010, 960);		break;
+			case 1001:BackGround(300, 10, BACK011, 3000);	break;
 			default:
 				assert(false);
 				break;
@@ -279,7 +286,8 @@ void CreateEnemy() {
 			case 3008:enemy_ship.push_back(new hoverShooter(x, y, 200, 16, PI / 2, 3, ENEMY_SHIP040)); break;
 				//4000番台はボス
 			case 4005:enemy_ship.push_back(new virtualBug(x, y, 200, 32, PI / 2, 3, ENEMY_SHIP050, 100000, 5000)); break;
-			case 4006:enemy_ship.push_back(new wyvernUnder(320, 600, 300, 32, PI*3/ 2, 1, ENEMY_SHIP060)); break;
+			case 4006:enemy_ship.push_back(new wyvernUnder(320, 600, 300, 32, PI * 3 / 2, 1, ENEMY_SHIP060)); break;
+			case 4007:enemy_ship.push_back(new virtualBug(320, 100, 200, 32, PI * 3 / 2, 3, ENEMY_SHIP060, 50000, 5000)); break;
 
 			default:
 				assert(false);
@@ -299,7 +307,7 @@ void InitGame() {
 	game_mode = GAME_MAIN;
 	main_count = 0;
 	stage = 0;
-	ReadPattern("media/EnemyPattern.csv", enemy_pattern);
+	ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
 	ReadPattern("media/EffectPattern1.csv", effect_pattern);
 
 	fps = new fpsManager(60);

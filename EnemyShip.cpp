@@ -303,6 +303,51 @@ bool wyvernUnder::OutSide() {
 		return true;
 	return false;
 }
+//
+//virtualBug::virtualBug() {}
+//virtualBug::virtualBug(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) :enemyShip(x, y, z, r, angle, speed, image_name, score, hp) {
+//	count = 0;
+//	add_angle = 0;
+//}
+//virtualBug::~virtualBug() {}
+//void virtualBug::Calc() {
+//	Move();
+//	Shot();
+//	count++;
+//	count = count % 3600;
+//}
+//void virtualBug::Move() {
+//}
+//void virtualBug::Shot() {
+//	if (count < 900) {
+//		if (count % 6 == 0) {
+//			NCircle(x, y + 5, z, 8, angle + add_angle, 6, 3, ENEMY_BULLET07);
+//			DirectionalBullet(x - 110, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//			DirectionalBullet(x + 110, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//			DirectionalBullet(x - 170, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//			DirectionalBullet(x + 170, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//		}
+//		else if (count % 3 == 0) {
+//			NCircle(x, y + 5, z, 8, angle + add_angle, 6, 3, ENEMY_BULLET08);
+//			DirectionalBullet(x - 150, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//			DirectionalBullet(x + 150, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//			DirectionalBullet(x - 130, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//			DirectionalBullet(x + 130, y + 10, 200, 8, angle, 8, ENEMY_BULLET07);
+//		}
+//		else
+//			add_angle += count*PI / 4056;
+//
+//	}
+//	else if (count < 1800) {
+//
+//	}
+//	else if (count < 2700) {
+//
+//	}
+//	else {
+//
+//	}
+//}
 
 //ƒeƒXƒg
 testSpiralShotPattern::testSpiralShotPattern() {}
