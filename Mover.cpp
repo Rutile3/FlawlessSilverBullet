@@ -41,8 +41,8 @@ void cMover::Draw(int lower_limits, int upper_limits) {
 }
 bool cMover::OutSide() {
 	//return ... ‚Å‚Å‚«‚»‚¤
-	if (x > 640 + 50 || x < -50 ||
-		y > 480 + 50 || y < -50)
+	if (x > 640 + 80 || x < -80 ||
+		y > 480 + 80 || y < -80)
 		return true;
 	return false;
 }

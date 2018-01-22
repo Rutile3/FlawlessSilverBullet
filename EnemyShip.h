@@ -196,6 +196,21 @@ private:
 	bool OutSide();
 };
 
+class wyvernMissile :public enemyShip {
+public:
+	wyvernMissile();
+	wyvernMissile(float x, float y, float z, float r, float angle, float speed);
+	~wyvernMissile();
+
+	void Calc();
+
+private:
+	int count;
+	int tmp_speed;
+
+	void Move();
+};
+
 //ƒeƒXƒg
 class testSpiralShotPattern :public enemyShip {
 public:

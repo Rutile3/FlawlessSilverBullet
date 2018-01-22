@@ -280,8 +280,35 @@ void virtualBug::Shot() {
 	}
 }
 
+wyvernMissile::wyvernMissile() {}
+wyvernMissile::wyvernMissile(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed,ENEMY_SHIP070,20,8) {
+	count = 0;
+	tmp_speed = speed;
+}
+wyvernMissile::~wyvernMissile() {}
+void wyvernMissile::Calc() {
+	Move();
+}
+void wyvernMissile::Move() {
+	if (z != 200 && y < -50) {
+		z--;
+		speed = 0;
+	}
+	else if (z == 200 && angle != PI / 2) {
+		angle = PI / 2;
+		speed = tmp_speed;
+	}
+
+	x += speed*cos(angle);
+	y += speed*sin(angle);
+}
+void WyvernMissile(float x, float y, float z) {
+	enemy_ship.push_back(new wyvernMissile(x, y, z, 6, PI * 3 / 2, 7));
+}
 wyvernUnder::wyvernUnder() {}
-wyvernUnder::wyvernUnder(float x, float y, float z, float r, float angle, float speed, int image_name) :enemyShip(x, y, z, r, angle, speed, image_name) {}
+wyvernUnder::wyvernUnder(float x, float y, float z, float r, float angle, float speed, int image_name) :enemyShip(x, y, z, r, angle, speed, image_name) {
+	count = 0;
+}
 wyvernUnder::~wyvernUnder() {}
 void wyvernUnder::Calc() {
 	Move();
@@ -294,7 +321,19 @@ void wyvernUnder::Move() {
 	y += add_y;
 }
 void wyvernUnder::Shot() {
-
+	switch (count) {
+	case 200:WyvernMissile(x + 70, y - 24, z + 1); WyvernMissile(x - 90, y - 27, z + 1); WyvernMissile(x + 110, y + 13, z + 1); WyvernMissile(x - 160, y + 19, z + 1); break;
+	case 220:WyvernMissile(x + 80, y - 27, z + 1); WyvernMissile(x - 20, y - 24, z + 1); WyvernMissile(x + 150, y + 14, z + 1); WyvernMissile(x - 120, y + 14, z + 1); break;
+	case 240:WyvernMissile(x + 60, y - 22, z + 1); WyvernMissile(x - 40, y - 21, z + 1); WyvernMissile(x + 100, y + 17, z + 1); WyvernMissile(x - 120, y + 12, z + 1); break;
+	case 260:WyvernMissile(x + 90, y - 25, z + 1); WyvernMissile(x - 90, y - 25, z + 1); WyvernMissile(x + 120, y + 11, z + 1); WyvernMissile(x - 130, y + 11, z + 1); break;
+	case 280:WyvernMissile(x + 80, y - 27, z + 1); WyvernMissile(x - 10, y - 28, z + 1); WyvernMissile(x + 150, y + 11, z + 1); WyvernMissile(x - 120, y + 15, z + 1); break;
+	case 300:WyvernMissile(x + 70, y - 21, z + 1); WyvernMissile(x - 70, y - 23, z + 1); WyvernMissile(x + 160, y + 17, z + 1); WyvernMissile(x - 160, y + 18, z + 1); break;
+	case 320:WyvernMissile(x + 50, y - 23, z + 1); WyvernMissile(x - 80, y - 21, z + 1); WyvernMissile(x + 140, y + 11, z + 1); WyvernMissile(x - 120, y + 12, z + 1); break;
+	case 340:WyvernMissile(x + 10, y - 27, z + 1); WyvernMissile(x - 30, y - 25, z + 1); WyvernMissile(x + 120, y + 14, z + 1); WyvernMissile(x - 140, y + 14, z + 1); break;
+	case 360:WyvernMissile(x + 70, y - 24, z + 1); WyvernMissile(x - 50, y - 20, z + 1); WyvernMissile(x + 150, y + 17, z + 1); WyvernMissile(x - 110, y + 11, z + 1); break;
+	case 380:WyvernMissile(x + 60, y - 23, z + 1); WyvernMissile(x - 60, y - 21, z + 1); WyvernMissile(x + 110, y + 18, z + 1); WyvernMissile(x - 150, y + 15, z + 1); break;
+	default:break;
+	}
 }
 bool wyvernUnder::OutSide() {
 	//return ... ‚Å‚Å‚«‚»‚¤
@@ -303,6 +342,7 @@ bool wyvernUnder::OutSide() {
 		return true;
 	return false;
 }
+
 //
 //virtualBug::virtualBug() {}
 //virtualBug::virtualBug(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) :enemyShip(x, y, z, r, angle, speed, image_name, score, hp) {
