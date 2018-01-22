@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "GameKeyManager.h"
+#include "GameSoundManager.h"
 #include "RutileMath.h"
 
 #include "Effect.h"
@@ -63,5 +64,6 @@ extern keysManager* key;
 extern cMover* my_ship;
 extern cMover* my_shield;
 extern vector<cMover*> my_bullet;
+extern soundsManager* sound;
 
 #endif

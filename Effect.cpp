@@ -12,6 +12,7 @@ void cEffect::Hit(cMover* mover) {
 cExplosion::cExplosion() {
 }
 cExplosion::cExplosion(float x, float y, float z, float r, float angle, float speed, int image_name) :cEffect(x, y, z, r, angle, speed, image_name) {
+	sound->Play(EXPLOSION1);
 }
 cExplosion::~cExplosion() {
 }

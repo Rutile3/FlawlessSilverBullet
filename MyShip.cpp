@@ -84,12 +84,13 @@ void myShip::Hit(cMover* mover) {
 		hp--;
 		if (hp <= 0) {
 			Explosion(this, false);
-			//”š”j‰¹
+			
 			this->x = 184184;//êŠO‚ÉˆÚ“®‚³‚¹‚ÄêŠO”»’è‚ÅÁ‚·
 		}
 		else {
 			Explosion(this,true);
-			//”í’e‰¹
+			sound->Stop(EXPLOSION1);
+			sound->Play(DAMAGE);
 		}
 	}
 }
@@ -144,6 +145,7 @@ myBullet::myBullet(const cMover& mover) :cMover(mover) {
 	}
 	score = mover.score;
 	count = 0;
+	sound->Play(REFLECTION);
 }
 myBullet::myBullet(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name) {
 	count = 0;
