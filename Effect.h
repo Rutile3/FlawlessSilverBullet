@@ -5,6 +5,8 @@
 #include <DxLib.h>
 #include <vector>
 
+#include "GameSoundManager.h"
+
 #include "Mover.h"
 
 using namespace std;
@@ -44,5 +46,5 @@ private:
 void BackGround(int z, int speed, int image_name, int repeat_y);
 
 extern vector<cMover*> effect;
-
+extern soundsManager* sound;
 #endif

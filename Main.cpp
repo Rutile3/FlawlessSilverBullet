@@ -71,6 +71,7 @@ void Title() {
 	if (key->z->Push() == true) {
 		game_mode = GAME_MAIN;
 		main_count = -1;//mainのほうで1加算されるので
+		sound->Play(ENTER);
 		stage = 0;
 		ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
 		ReadPattern("media/EffectPattern1.csv", effect_pattern);
@@ -153,10 +154,12 @@ void OutSideSub(vector<cMover*> &ve) {
 void Draw() {
 	//デバッグ用
 	//printfDx("es = %d\n", enemy_ship.size());
-	printfDx("eb = %d\n", enemy_bullet.size());
+	//printfDx("eb = %d\n", enemy_bullet.size());
 	//printfDx("mb = %d\n", my_bullet.size());
 	//printfDx("main_count = %d\n", main_count);
-	DrawSub(300, 600);
+	DrawSub(500, 600);
+	DrawSub(400, 500);
+	DrawSub(300, 400);
 	DrawSub(200, 300);
 	for (int i = 0; i < my_bullet.size(); i++)
 		my_bullet[i]->Draw();
@@ -218,8 +221,11 @@ void CreateEffect() {
 			case 118:main_count = 18000; break;
 			case 119:main_count = 19000; break;
 			//1000番台は背景
-			case 1000:BackGround(500, 0.1f, BACK010, 960);		break;
+			case 1000:BackGround(500, 0.1f, BACK010, 960);	break;
 			case 1001:BackGround(300, 10, BACK011, 3000);	break;
+			//2000番台はBGM
+			case 2000:sound->Play(BGM01); break;
+			case 2001:sound->Stop(BGM01); break;
 			default:
 				assert(false);
 				break;
@@ -304,7 +310,7 @@ void CreateEnemy() {
 }
 
 void InitGame() {
-	game_mode = GAME_MAIN;
+	game_mode = TITLE;
 	main_count = 0;
 	stage = 0;
 	ReadPattern("media/EnemyPattern.csv", enemy_pattern);
@@ -312,6 +318,7 @@ void InitGame() {
 
 	fps = new fpsManager(60);
 	image = new imagesManager();
+	sound = new soundsManager();
 	key = new keysManager();
 
 	my_ship = new myShip(320, 400, 200, 8, 0, 6);
@@ -330,4 +337,5 @@ void EndGame() {
 	delete fps;
 	//delete image;//なんでかメモリーリークに失敗する。
 	delete key;
+	//delete sound;
 }

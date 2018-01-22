@@ -8,6 +8,7 @@
 #include "FpsManager.h"
 #include "GameImageManager.h"
 #include "GameKeyManager.h"
+#include "GameSoundManager.h"
 #include "RutileMath.h"
 
 #include "EnemyBullet.h"
@@ -27,6 +28,7 @@ int main_count;
 keysManager* key;
 fpsManager* fps;
 imagesManager* image;
+soundsManager* sound;
 
 vector<cMover*> effect;
 vector<cMover*> enemy_bullet;
