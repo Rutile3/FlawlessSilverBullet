@@ -11,6 +11,8 @@ imagesManager::imagesManager() {
 
 	image[MY_SHIELD_0] = new imageManager("media/Image/Myshield0.png", 4.57f);
 
+	image[LIFE1] = new imageManager("media/Image/Life1.png", 2);
+
 	image[MY_BULLET000] = new imageManager("media/Image/MyBullet000.png");
 	image[MY_BULLET001] = new imageManager("media/Image/MyBullet001.png");
 	image[MY_BULLET002] = new imageManager("media/Image/MyBullet002.png");
