@@ -211,6 +211,22 @@ private:
 	void Move();
 };
 
+class cWyvern :public enemyShip {
+public:
+	cWyvern();
+	cWyvern(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp);
+	~cWyvern();
+
+	void Calc();
+
+private:
+	int count;
+	float add_angle;
+
+	void Move();
+	void Shot();
+};
+
 //ƒeƒXƒg
 class testSpiralShotPattern :public enemyShip {
 public:
