@@ -43,7 +43,7 @@ void myShip::Draw(int lower_limits, int upper_limits) {
 		default:assert(false); break;
 		}
 		printfDx("score = %d\n", score);								//デバッグ用
-		DrawBox(0, 624, energy / 2, 640, GetColor(100, 100, 255), TRUE);	//デバッグ用
+		DrawBox(0, 464, energy / 2, 480, GetColor(100, 100, 255), TRUE);//デバッグ用
 		if (key->left->State())image_name = MY_SHIP_1;
 		else if (key->left->State())image_name = MY_SHIP_2;
 		else						image_name = MY_SHIP_0;
