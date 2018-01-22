@@ -5,7 +5,7 @@ int energy;
 const int energy_max = 800;//800が想定値
 
 myShip::myShip() {}
-myShip::myShip(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name, 0, 6) {
+myShip::myShip(float x, float y, float z, float r, float angle, float speed, int image_name) :cMover(x, y, z, r, angle, speed, image_name, 0, 7) {
 	energy = energy_max;
 	invincible_count = 0;
 	shot_count = 0;
@@ -32,14 +32,14 @@ void myShip::Draw(int lower_limits, int upper_limits) {
 		//DrawPixel(x, y, GetColor(255, 255, 255));
 		//DrawCircle(x, y, r, GetColor(255, 255, 255), FALSE);			//当たり判定の可視化
 		//printfDx("energy = %d\n", energy);								//デバッグ用
-		//printfDx("my_hp = %d\n", hp); assert(hp != 0);					//デバッグ用
 		switch (hp) {
-		case 6:image->Draw(545, 464, 200, 0, LIFE1);
-		case 5:image->Draw(560, 440, 200, 0, LIFE1);
-		case 4:image->Draw(575, 464, 200, 0, LIFE1);
-		case 3:image->Draw(590, 440, 200, 0, LIFE1);
-		case 2:image->Draw(605, 464, 200, 0, LIFE1);
-		case 1:image->Draw(620, 440, 200, 0, LIFE1); break;
+		case 7:image->Draw(545, 464, 200, 0, LIFE1);
+		case 6:image->Draw(560, 440, 200, 0, LIFE1);
+		case 5:image->Draw(575, 464, 200, 0, LIFE1);
+		case 4:image->Draw(590, 440, 200, 0, LIFE1);
+		case 3:image->Draw(605, 464, 200, 0, LIFE1);
+		case 2:image->Draw(620, 440, 200, 0, LIFE1); 
+		case 1:break;
 		default:assert(false); break;
 		}
 		printfDx("score = %d\n", score);								//デバッグ用
