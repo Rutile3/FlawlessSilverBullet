@@ -134,7 +134,6 @@ private:
 	void Move();
 };
 
-
 class easyInvaders :public enemyShip {
 public:
 	easyInvaders();
@@ -165,7 +164,6 @@ private:
 	void Shot();
 };
 
-
 class virtualBug :public enemyShip {
 public:
 	virtualBug();
@@ -180,6 +178,22 @@ private:
 
 	void Move();
 	void Shot();
+};
+
+class wyvernUnder :public enemyShip {
+public:
+	wyvernUnder();
+	wyvernUnder(float x, float y, float z, float r, float angle, float speed, int image_name);
+	~wyvernUnder();
+
+	void Calc();
+
+private:
+	int count;
+
+	void Move();
+	void Shot();
+	bool OutSide();
 };
 
 //ƒeƒXƒg

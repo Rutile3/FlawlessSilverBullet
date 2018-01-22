@@ -279,6 +279,7 @@ void CreateEnemy() {
 			case 3008:enemy_ship.push_back(new hoverShooter(x, y, 200, 16, PI / 2, 3, ENEMY_SHIP040)); break;
 				//4000”Ô‘ä‚Íƒ{ƒX
 			case 4005:enemy_ship.push_back(new virtualBug(x, y, 200, 32, PI / 2, 3, ENEMY_SHIP050, 100000, 5000)); break;
+			case 4006:enemy_ship.push_back(new wyvernUnder(320, 600, 300, 32, PI*3/ 2, 1, ENEMY_SHIP060)); break;
 
 			default:
 				assert(false);
@@ -295,10 +296,10 @@ void CreateEnemy() {
 }
 
 void InitGame() {
-	game_mode = TITLE;
+	game_mode = GAME_MAIN;
 	main_count = 0;
 	stage = 0;
-	ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
+	ReadPattern("media/EnemyPattern.csv", enemy_pattern);
 	ReadPattern("media/EffectPattern1.csv", effect_pattern);
 
 	fps = new fpsManager(60);

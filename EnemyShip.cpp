@@ -280,6 +280,30 @@ void virtualBug::Shot() {
 	}
 }
 
+wyvernUnder::wyvernUnder() {}
+wyvernUnder::wyvernUnder(float x, float y, float z, float r, float angle, float speed, int image_name) :enemyShip(x, y, z, r, angle, speed, image_name) {}
+wyvernUnder::~wyvernUnder() {}
+void wyvernUnder::Calc() {
+	Move();
+	Shot();
+	count++;
+	count = count % 3600;
+}
+void wyvernUnder::Move() {
+	x += add_x;
+	y += add_y;
+}
+void wyvernUnder::Shot() {
+
+}
+bool wyvernUnder::OutSide() {
+	//return ... ‚Å‚Å‚«‚»‚¤
+	if (x > 640 + 200 || x < -200 ||
+		y > 480 + 200 || y < -200)
+		return true;
+	return false;
+}
+
 //ƒeƒXƒg
 testSpiralShotPattern::testSpiralShotPattern() {}
 testSpiralShotPattern::testSpiralShotPattern(float x, float y, float z, float r, float angle, float speed) :enemyShip(x, y, z, r, angle, speed) {
