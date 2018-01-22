@@ -225,7 +225,7 @@ void hoverShooter::Calc() {
 	count++;
 }
 void hoverShooter::Move() {
-	if (count < 660)y += speed*sin(count*PI / 90);
+	if (count < 450)y += speed*sin(count*PI / 90);
 	else			y -= speed;
 
 	angle = atan2(my_ship->y - y, my_ship->x - x);
