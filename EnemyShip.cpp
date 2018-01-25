@@ -369,9 +369,9 @@ void cWyvern::Shot() {
 
 		for (int i = 0; i < 8; i++) {
 			if (count % 12 == 0)
-				NWay(x, y - 24, z, 12, angle + add_angle/8, PI / 8, 6 + i/8, 8, ENEMY_BULLET04);
+				NWay(x, y - 24, z, 12, angle + add_angle/8, PI / 8, 6 + i/8.0f, 8, ENEMY_BULLET04);
 			else if (count % 6 == 0)
-				NWay(x, y - 24, z, 12, angle - add_angle/8, PI / 8, 6 + i/8, 8, ENEMY_BULLET04);
+				NWay(x, y - 24, z, 12, angle - add_angle/8, PI / 8, 6 + i/8.0f, 8, ENEMY_BULLET04);
 		}
 	}
 	else if (count < 1800) {
