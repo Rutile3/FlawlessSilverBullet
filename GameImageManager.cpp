@@ -24,6 +24,12 @@ imagesManager::imagesManager() {
 	image[ENEMY_SHIP040] = new imageManager("media/Image/Enemy040.png", 1.5f);
 	image[ENEMY_SHIP050] = new imageManager("media/Image/Enemy050.png", 1.5f);
 	image[ENEMY_SHIP060] = new imageManager("media/Image/Enemy060.png", 1.5f);
+	image[ENEMY_SHIP061] = new imageManager("media/Image/Enemy061.png", 1.5f);
+	image[ENEMY_SHIP062] = new imageManager("media/Image/Enemy062.png", 1.5f);
+	image[ENEMY_SHIP063] = new imageManager("media/Image/Enemy063.png", 1.5f);
+	image[ENEMY_SHIP064] = new imageManager("media/Image/Enemy064.png", 1.5f);
+	image[ENEMY_SHIP065] = new imageManager("media/Image/Enemy065.png", 1.5f);
+	image[ENEMY_SHIP066] = new imageManager("media/Image/Enemy066.png", 1.5f);
 	image[ENEMY_SHIP070] = new imageManager("media/Image/Enemy070.png", 1.5f);
 
 	image[ENEMY_BULLET01] = new imageManager("media/Image/Bullet01.png", 2);

@@ -343,7 +343,13 @@ bool wyvernUnder::OutSide() {
 	return false;
 }
 
-
+//仮（絶対後から書き直す）
+float x_2[16] = { 130, -130, 200, -200, 70, 120, 150, 180, 210, 240, -70, -120, -150, -180, -210, -240 };
+float y_2[16] = { 8, 8, 40, 40, -15, -15, -5, 5, 25, 35, -15, -15, -5, 5, 25, 35 };
+float r_2[16] = { 16, 16, 32, 32, 32, 16, 16, 16, 16, 16, 32, 16, 16, 16, 16, 16 };
+int hp_2[4] = { 500, 500, 200, 200 };
+int score_2[4] = { 2000, 2000, 1000, 1000 };
+static bool destroy_part[4] = { false, false, false, false };
 cWyvern::cWyvern() {}
 cWyvern::cWyvern(float x, float y, float z, float r, float angle, float speed, int image_name, int score, int hp) :enemyShip(x, y, z, r, angle, speed, image_name, score, hp) {
 	count = 0;
@@ -359,7 +365,7 @@ void cWyvern::Calc() {
 void cWyvern::Move() {
 }
 void cWyvern::Shot() {
-	if (true/*count < 900*/) {
+	if (destroy_part[0] == true && destroy_part[1] == true) {
 		if (count % 4 == 0)
 			NCircle(x, y - 24, z, 8, angle + add_angle, 6, 3, ENEMY_BULLET07);
 		else if (count % 2 == 0) 
@@ -367,21 +373,114 @@ void cWyvern::Shot() {
 		else
 			add_angle += count*PI / 4056;
 
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (count % 12 == 0)
-				NWay(x, y - 24, z, 12, angle + add_angle/8, PI / 8, 6 + i/8.0f, 8, ENEMY_BULLET04);
+				NWay(x, y - 24, z, 12, angle + add_angle/8, PI / 4, 6 + i/4.0f, 8, ENEMY_BULLET04);
 			else if (count % 6 == 0)
-				NWay(x, y - 24, z, 12, angle - add_angle/8, PI / 8, 6 + i/8.0f, 8, ENEMY_BULLET04);
+				NWay(x, y - 24, z, 12, angle - add_angle/8, PI / 4, 6 + i/4.0f, 8, ENEMY_BULLET04);
 		}
 	}
-	else if (count < 1800) {
+	//else if (count < 1800) {
 
-	}
-	else if (count < 2700) {
+	//}
+	//else if (count < 2700) {
 
-	}
+	//}
 	else {
-
+		float x;
+		float y;
+		switch (count % 210) {
+		case 0:case 30:case 60:case 90:case 120:case 150:
+			x = my_ship->x - this->x;
+			y = my_ship->y - (this->y-24);
+			NWay(this->x, this->y - 24, z, 8, atan2(y,x), PI / 8, 6, 2, ENEMY_BULLET08);
+			break;
+		case 15:case 75:case 135:
+			if (destroy_part[0] == true) {
+				x = my_ship->x - this->x;
+				y = my_ship->y - (this->y - 24);
+				NWay(this->x, this->y - 24, z, 8, atan2(y, x), PI / 16, 6, 2, ENEMY_BULLET07);
+			}
+			break;
+		case 45:case 115:case 165:
+			if (destroy_part[1] == true) {
+				x = my_ship->x - this->x;
+				y = my_ship->y - (this->y - 24);
+				NWay(this->x, this->y - 24, z, 8, atan2(y, x), PI / 16, 6, 2, ENEMY_BULLET07);
+			}
+			break;
+		case 180:
+			x = my_ship->x - this->x;
+			y = my_ship->y - this->y;
+			if (destroy_part[0] == false)
+				for (int i = 0; i < 8; i++)
+					DirectionalBullet(this->x + x_2[0], this->y + y_2[0], z, 12, atan2(y, x-x_2[0]), 5 + i / 5.0f, ENEMY_BULLET04);
+			if (destroy_part[1] == false)
+				for (int i = 0; i < 8; i++)
+					DirectionalBullet(this->x + x_2[1], this->y + y_2[1], z, 12, atan2(y, x-x_2[1]), 5 + i / 5.0f, ENEMY_BULLET04);
+			break;
+		default:
+			break;
+		}
+	}
+}
+void cWyvern::Draw(int lower_limits, int upper_limits) {
+	if (lower_limits < z && z <= upper_limits) {
+		if (destroy_part[2] == false)
+			image->Draw(x, y, z, angle, ENEMY_SHIP065);
+		if (destroy_part[3] == false)
+			image->Draw(x, y, z, angle, ENEMY_SHIP064);
+		image->Draw(x, y, z, angle, ENEMY_SHIP063);
+		image->Draw(x, y, z, angle, ENEMY_SHIP062);
+		image->Draw(x, y, z, angle, ENEMY_SHIP061);
+		if (destroy_part[0] == false)
+			image->Draw(x + 130, y + 8, z, atan2(my_ship->y - this->y - y_2[0], my_ship->x - this->x - x_2[0]), ENEMY_SHIP066);
+		if (destroy_part[1] == false)
+			image->Draw(x - 130, y + 8, z, atan2(my_ship->y - this->y - y_2[1], my_ship->x - this->x - x_2[1]), ENEMY_SHIP066);
+		//デバッグ用に当たり判定を表示
+		DrawCircle(x, y, r, GetColor(z, z, z), FALSE);				//本体
+		for (int i = 0; i < 16; i++)
+			DrawCircle(x+x_2[i], y+y_2[i], r_2[i], GetColor(z, z, z), FALSE);
+	}
+}
+void cWyvern::Hit(cMover* mover) {
+	float r = this->r + mover->r;//説明変数
+	float x = this->x - mover->x;
+	float y = this->y - mover->y;
+	if (x*x + y*y < r*r && z == mover->z) {
+		mover->Hit(this);
+		hp -= mover->hp;
+		if (hp <= 0) {
+			Explosion(this, 1);
+			this->x = 184184;//場外に移動させて場外判定で消す
+			my_ship->score += score;
+		}
+	}
+	for (int i = 0; i < 16; i++) {
+		float r = r_2[i] + mover->r;//説明変数
+		float x = this->x + x_2[i] - mover->x;
+		float y = this->y + y_2[i] - mover->y;
+		if (x*x + y*y < r*r && z == mover->z) {
+			mover->Hit(this);
+			if (i < 4 && destroy_part[i] == false) {
+				hp_2[i] -= mover->hp;
+				if (hp_2[i] <= 0) {
+					enemyShip* tmp;
+					Explosion(tmp  = new enemyShip(this->x+x_2[i],this->y+y_2[i],z,0,0,0), 1);
+					delete tmp;
+					destroy_part[i] = true;
+					my_ship->score += score_2[i];
+				}
+			}
+			else {
+				hp -= mover->hp;
+				if (hp <= 0) {
+					Explosion(this, 1);
+					this->x = 184184;//場外に移動させて場外判定で消す
+					my_ship->score += score;
+				}
+			}
+		}
 	}
 }
 

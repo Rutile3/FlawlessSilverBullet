@@ -133,7 +133,7 @@ void myShield::Draw(int lower_limits, int upper_limits) {
 void myShield::Hit(cMover* mover) {
 	//”½ŽË‰¹
 	if (mover->image_name == ENEMY_BULLET01 || mover->image_name == ENEMY_BULLET04 || mover->image_name == ENEMY_BULLET07)
-	my_bullet.push_back(new myBullet(*mover));
+		my_bullet.push_back(new myBullet(*mover));
 }
 
 
