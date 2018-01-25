@@ -218,10 +218,13 @@ public:
 	~cWyvern();
 
 	void Calc();
+	void Draw(int lower_limits = 199, int upper_limits = 200);
+	void Hit(cMover* mover);
 
 private:
 	int count;
 	float add_angle;
+	float angle_2[2];
 
 	void Move();
 	void Shot();

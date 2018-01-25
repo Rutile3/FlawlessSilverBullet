@@ -293,7 +293,7 @@ void CreateEnemy() {
 				//4000”Ô‘ä‚Íƒ{ƒX
 			case 4005:enemy_ship.push_back(new virtualBug(x, y, 200, 32, PI / 2, 3, ENEMY_SHIP050, 100000, 5000)); break;
 			case 4006:enemy_ship.push_back(new wyvernUnder(320, 600, 300, 32, PI * 3 / 2, 1, ENEMY_SHIP060)); break;
-			case 4007:enemy_ship.push_back(new cWyvern(320, 100, 200, 32, PI * 3 / 2, 3, ENEMY_SHIP060, 50000, 5000)); break;
+			case 4007:enemy_ship.push_back(new cWyvern(320, 100, 200, 36, PI * 3 / 2, 3, ENEMY_SHIP060, 50000, 5000)); break;
 
 			default:
 				assert(false);
