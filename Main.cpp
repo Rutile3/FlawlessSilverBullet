@@ -73,7 +73,7 @@ void Title() {
 		main_count = -1;//main‚Ì‚Ù‚¤‚Å1‰ÁZ‚³‚ê‚é‚Ì‚Å
 		sound->Play(ENTER);
 		stage = 0;
-		ReadPattern("media/EnemyPattern1.csv", enemy_pattern);
+		ReadPattern("media/EnemyPattern.csv", enemy_pattern);
 		ReadPattern("media/EffectPattern1.csv", effect_pattern);
 	}
 }
