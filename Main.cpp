@@ -64,7 +64,7 @@ int WINAPI WinMain(HINSTANCE h1, HINSTANCE hP, LPSTR lpC, int nC) {
 }
 
 void Title() {
-	image->Draw(320, 240, 200, 0, TITLE_1);
+	image->Draw(320, 240, 200, 0, TITLE_4);
 	image->Draw(320, 120, 200, 0, TITLE_2);
 	image->Draw(320, 400, 200, 0, TITLE_3);
 

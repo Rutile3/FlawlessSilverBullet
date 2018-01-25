@@ -7,6 +7,7 @@ enum {
 	TITLE_1,
 	TITLE_2,
 	TITLE_3,
+	TITLE_4,
 
 	MY_SHIP_0,
 	MY_SHIP_1,

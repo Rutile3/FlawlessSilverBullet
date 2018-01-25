@@ -4,6 +4,7 @@ imagesManager::imagesManager() {
 	image[TITLE_1] = new imageManager("media/Image/Title1.png");
 	image[TITLE_2] = new imageManager("media/Image/Title2.png");
 	image[TITLE_3] = new imageManager("media/Image/Title3.png");
+	image[TITLE_4] = new imageManager("media/Image/Title4.png");
 
 	image[MY_SHIP_0] = new imageManager("media/Image/MyShip0.png");
 	image[MY_SHIP_1] = new imageManager("media/Image/MyShip1.png");
